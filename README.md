@@ -1,3 +1,30 @@
+Grid Solver:
+
+https://coloronx.github.io/Mycopunk_UpgradeSolver/
+
+Carson's Builds:
+
+https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215
+
+Wiki:
+
+https://mycopunk.miraheze.org/wiki/Main_Page
+
+Modding:
+
+https://thunderstore.io/c/mycopunk/
+
+Speedrunning:
+
+https://www.speedrun.com/Mycopunk
+
+Tiermaker:
+
+https://tiermaker.com/user/18796434
+
+-----------------
+Knowledge to Give
+-----------------
 Weapon Combos:
 
 Most players will opt for the Primary + Secondary approach to weapon combos.
