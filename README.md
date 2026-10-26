@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/style.css">
+
 # Mycopunk Amalgamation Builds
 
 Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).
