@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/assets/css/style.css">
+<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/style.css">
 
 # Patterned Builds (Threat 6 Amalgamation)
 
