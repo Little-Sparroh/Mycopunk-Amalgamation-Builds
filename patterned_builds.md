@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ 'style.css' | relative_url }}">
 # Patterned Builds (Threat 6 Amalgamation)
 
 ## S Tier
