@@ -6,9 +6,8 @@ images_dir = Path("patterned_build_images")
 output_path = Path("patterned_builds.md")
 
 def make_image_name(weapon, build):
-    # Adjust this to match your actual image filenames
     name = f"{weapon}_{build}".lower().replace(" ", "_").replace("'", "")
-    return f"{name}.png"
+    return f"{name}.PNG"   # uppercase extension to match your files
 
 with csv_path.open(newline="", encoding="utf-8") as f, output_path.open("w", encoding="utf-8") as out:
     reader = csv.DictReader(f)
