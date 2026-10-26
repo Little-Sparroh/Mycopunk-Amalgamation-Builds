@@ -17,7 +17,7 @@ with csv_path.open(newline="", encoding="utf-8") as f, output_path.open("w", enc
     reader = csv.DictReader(f)
     
     # Force the stylesheet to load
-    out.write('<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/assets/css/style.css">\n\n')
+    out.write('<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/style.css">\n\n')
     out.write("# Patterned Builds (Threat 6 Amalgamation)\n\n")
     
     current_tier = None
