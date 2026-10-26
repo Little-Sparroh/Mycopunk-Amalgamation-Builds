@@ -1,3 +1,6 @@
+- [Patterned Builds](patterned_builds.md)
+- [Default Builds](default_builds.md)
+
 Grid Solver:
 
 https://coloronx.github.io/Mycopunk_UpgradeSolver/
