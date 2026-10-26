@@ -62,5 +62,7 @@ Heavy weapons are not very good generally even with the upgrades.
 New Rules:
 
 Heavy Weapons are actually viable now as tools
+
 Grenades are a bit better spread now. Fire is still best, Shock is dependant upon weapon, Acid is based on essentially IF YOU HAVE NOTHING ELSE, Photon is great for Normal Damage or if you need ammo regen / multi element support, Snowball is used purely for cryo.
+
 Mycologist has the most complex gameplay but great overall movement.
