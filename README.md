@@ -4,8 +4,8 @@ Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced arou
 
 ## Build Collections
 
-- [Patterned Builds](patterned_builds.md) · [CSV](patterned_builds.csv)
-- [Default Builds](default_builds.md) · [CSV](default_builds.csv)
+- [Patterned Builds](patterned_builds.md) · [CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/patterned_builds.csv)
+- [Default Builds](default_builds.md) · [CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/default_builds.csv)
 - [Noob Builds](noob_builds.md)
 - [Base Times](base_times.md)
 
