@@ -1,24 +1,31 @@
-<link rel="stylesheet" href="/Mycopunk-Amalgamation-Builds/style.css">
+<link rel="stylesheet" href="css/style.css">
 
 # Mycopunk Amalgamation Builds
 
 Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).
 
-## Build Collections
+Tiers on build pages are assigned automatically from kill time (bell-curve split).
 
-- [Infused Builds](/builds/no_restriction_builds.md) · [CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_restriction_builds.csv)
-- [Non Infused Builds](/builds/no_infusion_builds.md) · [CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_infusion_builds.csv)
-- [Non Rotation Builds](/builds/no_rotation_builds.md)
-- [Non Upgraded Times](/builds/no_upgrade_times.md)
+<nav class="top-nav" aria-label="Build collections">
+  <a class="nav-link" href="builds/no_restriction_builds.md">No Restriction</a>
+  <a class="nav-link" href="builds/no_infusion_builds.md">No Infusion</a>
+  <a class="nav-link" href="builds/no_rotation_builds.md">No Rotation</a>
+  <a class="nav-link" href="builds/no_upgrade_times.md">No Upgrade Times</a>
+</nav>
 
-## Resources
+<nav class="top-nav top-nav-secondary" aria-label="Resources">
+  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_restriction_builds.csv">Restriction CSV</a>
+  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_infusion_builds.csv">Infusion CSV</a>
+  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_rotation_builds.csv">Rotation CSV</a>
+  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_upgrade_times.csv">Upgrade Times CSV</a>
+  <a class="nav-link" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/">Grid Solver</a>
+  <a class="nav-link" href="https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215">Carson's Builds</a>
+  <a class="nav-link" href="https://mycopunk.miraheze.org/wiki/Main_Page">Wiki</a>
+  <a class="nav-link" href="https://thunderstore.io/c/mycopunk/">Modding</a>
+  <a class="nav-link" href="https://www.speedrun.com/Mycopunk">Speedrunning</a>
+  <a class="nav-link" href="https://tiermaker.com/user/18796434">Tiermaker</a>
+</nav>
 
-- [Grid Solver](https://coloronx.github.io/Mycopunk_UpgradeSolver/)
-- [Carson's Builds](https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215)
-- [Wiki](https://mycopunk.miraheze.org/wiki/Main_Page)
-- [Modding (Thunderstore)](https://thunderstore.io/c/mycopunk/)
-- [Speedrunning](https://www.speedrun.com/Mycopunk)
-- [Tiermaker](https://tiermaker.com/user/18796434)
 
 ---
 
