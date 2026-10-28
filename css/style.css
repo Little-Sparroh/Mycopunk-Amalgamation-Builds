@@ -97,7 +97,7 @@
   --sticky-nav-offset: 0.5rem;
   --tier-sidebar-width: 4.5rem;
   /* Clear sticky top-nav blur/background when the tier rail sticks */
-  --tier-nav-top: calc(var(--sticky-nav-offset) + 6rem);
+  --tier-nav-top: calc(var(--sticky-nav-offset) + 5.5rem);
 
 
 
