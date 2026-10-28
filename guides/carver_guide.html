@@ -17,10 +17,49 @@
   <a class="nav-link" href="bruisers_bears_guide.html">Bruiser&#x27;s Bears Guide</a>
   <a class="nav-link" href="roachards_pumpkins_guide.html">Roachard&#x27;s Pumpkins Guide</a>
   <a class="nav-link" href="terrys_pumpkins_guide.html">Terry&#x27;s Pumpkins Guide</a>
+  <details class="nav-dropdown" data-nav-section="external">
+    <summary class="nav-link nav-dropdown-trigger">External Links<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="External links">
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Grid Solver (external link)">Grid Solver<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Carson&#x27;s Builds (external link)">Carson&#x27;s Builds<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://mycopunk.miraheze.org/wiki/Main_Page" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Wiki (external link)">Wiki<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://modding.mycopunk.wiki/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Modding Wiki (external link)">Modding Wiki<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://thunderstore.io/c/mycopunk/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Thunderstore (external link)">Thunderstore<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://www.speedrun.com/Mycopunk" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Speedrunning (external link)">Speedrunning<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+    </div>
+  </details>
 </nav>
 <h2 class="page-title">Carver Guide</h2>
 <p>Guide content coming soon.</p>
 <p class="page-source"><a class="page-source-external" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/guides/carver_guide.csv" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="View CSV on GitHub (external link)">View CSV<span class="nav-external-mark" aria-hidden="true">↗</span></a> — source data for this page</p>
 <p class="page-placeholder"><em>Full page content will appear here once the CSV is filled in.</em></p>
+<script>
+(function () {
+  var nav = document.querySelector(".top-nav");
+  if (!nav) return;
+  var dropdowns = nav.querySelectorAll("details.nav-dropdown");
+  if (!dropdowns.length) return;
+
+  function closeAll(except) {
+    dropdowns.forEach(function (d) {
+      if (d !== except) d.open = false;
+    });
+  }
+
+  dropdowns.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) closeAll(d);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!nav.contains(e.target)) closeAll(null);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAll(null);
+  });
+})();
+</script>
 </body>
 </html>

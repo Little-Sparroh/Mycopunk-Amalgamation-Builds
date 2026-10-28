@@ -55,9 +55,11 @@ RESOURCE_NAV_ITEMS = (
         "https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215",
     ),
     ("Wiki", "https://mycopunk.miraheze.org/wiki/Main_Page"),
-    ("Modding", "https://thunderstore.io/c/mycopunk/"),
+    ("Modding Wiki", "https://modding.mycopunk.wiki/"),
+    ("Thunderstore", "https://thunderstore.io/c/mycopunk/"),
     ("Speedrunning", "https://www.speedrun.com/Mycopunk"),
 )
+
 
 
 @dataclass(frozen=True)
@@ -512,6 +514,35 @@ def _nav_dropdown(
     return "\n".join(lines)
 
 
+def _external_links_dropdown_html() -> str:
+    """Primary-nav dropdown for off-site resources (replaces secondary nav row)."""
+    lines = [
+        '  <details class="nav-dropdown" data-nav-section="external">',
+        '    <summary class="nav-link nav-dropdown-trigger">'
+        "External Links"
+        '<span class="nav-dropdown-caret" aria-hidden="true"></span>'
+        "</summary>",
+        '    <div class="nav-dropdown-panel" role="group" '
+        'aria-label="External links">',
+    ]
+    for label, href in RESOURCE_NAV_ITEMS:
+        safe_label = html.escape(label)
+        lines.append(
+            f'      <a class="nav-dropdown-link nav-dropdown-link-external" '
+            f'href="{html.escape(href)}" '
+            f'target="_blank" rel="noopener noreferrer" '
+            f'title="Opens in a new tab" '
+            f'aria-label="{safe_label} (external link)">'
+            f"{safe_label}"
+            f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
+            f"</a>"
+        )
+    lines.append("    </div>")
+    lines.append("  </details>")
+    return "\n".join(lines)
+
+
+
 NAV_SCRIPT = """\
 <script>
 (function () {
@@ -551,8 +582,8 @@ def primary_nav_html(
 ) -> str:
     """Primary sticky nav.
 
-    section=None (home): [Home] [Builds ▾] [Guides ▾] [Tierlists ▾]
-    section=builds|guides|tierlists: [Home] + that section's children (flat)
+    section=None (home): [Home] [Builds ▾] [Guides ▾] [Tierlists ▾] [External Links ▾]
+    section=builds|guides|tierlists: [Home] + section children (flat) + [External Links ▾]
     """
     lines = ['<nav class="top-nav" aria-label="Site">']
 
@@ -583,29 +614,12 @@ def primary_nav_html(
                 _nav_link(item.label, href, current=is_current)
             )
 
+    # External resources — always available from primary nav
+    lines.append(_external_links_dropdown_html())
+
     lines.append("</nav>")
     return "\n".join(lines) + "\n"
 
-
-def resource_nav_html() -> str:
-
-    lines = [
-        '<nav class="top-nav top-nav-secondary" aria-label="Resources">'
-    ]
-    for label, href in RESOURCE_NAV_ITEMS:
-        safe_label = html.escape(label)
-        lines.append(
-            f'  <a class="nav-link nav-link-external" '
-            f'href="{html.escape(href)}" '
-            f'target="_blank" rel="noopener noreferrer" '
-            f'title="Opens in a new tab" '
-            f'aria-label="{safe_label} (external link)">'
-            f"{safe_label}"
-            f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
-            f"</a>"
-        )
-    lines.append("</nav>")
-    return "\n".join(lines) + "\n"
 
 
 
@@ -789,9 +803,10 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
 
 def write_html_page(page: PageConfig, prepared: list[dict]) -> None:
     page.html_path.parent.mkdir(parents=True, exist_ok=True)
-    body = page_body_html(page, prepared)
+    body = page_body_html(page, prepared) + NAV_SCRIPT
     doc = html_document(page.title, "../css/style.css", body)
     page.html_path.write_text(doc, encoding="utf-8", newline="\n")
+
 
 
 def generate_page(page: PageConfig) -> None:
@@ -857,10 +872,10 @@ def write_index_html() -> None:
     body_parts = [
         "<h1>Sparroh's Mycopunk Builds</h1>\n",
         primary_nav_html(section=None),
-        resource_nav_html(),
         knowledge_section_html(),
         NAV_SCRIPT,
     ]
+
     doc = html_document(
         "Sparroh's Mycopunk Builds",
         "css/style.css",
@@ -916,10 +931,11 @@ def write_stub_page(item: NavItem) -> None:
     csv_path = ROOT / item.section / f"{item.page_id}.csv"
     if not csv_path.exists():
         csv_path.write_text("", encoding="utf-8", newline="\n")
-    body = stub_page_body_html(item)
+    body = stub_page_body_html(item) + NAV_SCRIPT
     doc = html_document(item.label, "../css/style.css", body)
     html_path.write_text(doc, encoding="utf-8", newline="\n")
     print(f"Wrote {html_path.relative_to(ROOT)} (stub)")
+
 
 
 TIERLIST_IMAGE_DIR = ROOT / "assets" / "images" / "tierlist_images"
@@ -1104,8 +1120,10 @@ def weapon_tierlist_body_html(item: NavItem) -> str:
         f"</p>\n"
     )
     parts.append(tierlist_grid_html(rows, TIERLIST_IMAGE_DIR))
+    parts.append(NAV_SCRIPT)
     parts.append(TIERLIST_ITEM_SCRIPT)
     return "".join(parts)
+
 
 
 def write_weapon_tierlist_page(item: NavItem) -> None:
@@ -1155,21 +1173,13 @@ def write_readme() -> None:
             )
         lines.append("")
 
-    lines.append('<nav class="top-nav top-nav-secondary" aria-label="Resources">')
+    lines.append("### External Links")
+    lines.append("")
     for label, href in RESOURCE_NAV_ITEMS:
-        lines.append(
-            f'  <a class="nav-link nav-link-external" href="{href}" '
-            f'target="_blank" rel="noopener noreferrer" '
-            f'title="Opens in a new tab" '
-            f'aria-label="{label} (external link)">'
-            f"{label}"
-            f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
-            f"</a>"
-        )
-    lines.append("</nav>")
+        lines.append(f"- [{label}]({href})")
+    lines.append("")
+    lines.append("")
 
-    lines.append("")
-    lines.append("")
     lines.append("---")
     lines.append("")
     lines.append("## Knowledge to Give")

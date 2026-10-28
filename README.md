@@ -29,13 +29,14 @@
 
 - [Weapon Tierlist](tierlists/weapon_tierlist.html)
 
-<nav class="top-nav top-nav-secondary" aria-label="Resources">
-  <a class="nav-link nav-link-external" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Grid Solver (external link)">Grid Solver<span class="nav-external-mark" aria-hidden="true">↗</span></a>
-  <a class="nav-link nav-link-external" href="https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Carson's Builds (external link)">Carson's Builds<span class="nav-external-mark" aria-hidden="true">↗</span></a>
-  <a class="nav-link nav-link-external" href="https://mycopunk.miraheze.org/wiki/Main_Page" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Wiki (external link)">Wiki<span class="nav-external-mark" aria-hidden="true">↗</span></a>
-  <a class="nav-link nav-link-external" href="https://thunderstore.io/c/mycopunk/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Modding (external link)">Modding<span class="nav-external-mark" aria-hidden="true">↗</span></a>
-  <a class="nav-link nav-link-external" href="https://www.speedrun.com/Mycopunk" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Speedrunning (external link)">Speedrunning<span class="nav-external-mark" aria-hidden="true">↗</span></a>
-</nav>
+### External Links
+
+- [Grid Solver](https://coloronx.github.io/Mycopunk_UpgradeSolver/)
+- [Carson's Builds](https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215)
+- [Wiki](https://mycopunk.miraheze.org/wiki/Main_Page)
+- [Modding Wiki](https://modding.mycopunk.wiki/)
+- [Thunderstore](https://thunderstore.io/c/mycopunk/)
+- [Speedrunning](https://www.speedrun.com/Mycopunk)
 
 
 ---

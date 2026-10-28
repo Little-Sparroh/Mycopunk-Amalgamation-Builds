@@ -653,6 +653,27 @@ span.nav-link:not(.nav-dropdown-trigger):hover {
   box-shadow: var(--shadow-focus);
 }
 
+.nav-dropdown-link-external {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.nav-dropdown-link-external .nav-external-mark {
+  flex-shrink: 0;
+  margin-inline-start: 0.35rem;
+  color: var(--color-text-subtle);
+  font-size: 0.85em;
+  opacity: 0.85;
+}
+
+.nav-dropdown-link-external:hover .nav-external-mark {
+  color: var(--color-link-hover);
+  opacity: 1;
+}
+
+
 .page-placeholder {
   margin-top: var(--space-6);
   color: var(--color-text-subtle);
