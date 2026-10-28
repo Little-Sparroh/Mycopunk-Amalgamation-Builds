@@ -381,12 +381,20 @@ def resource_nav_html() -> str:
         '<nav class="top-nav top-nav-secondary" aria-label="Resources">'
     ]
     for label, href in RESOURCE_NAV_ITEMS:
+        safe_label = html.escape(label)
         lines.append(
-            f'  <a class="nav-link" href="{html.escape(href)}">'
-            f"{html.escape(label)}</a>"
+            f'  <a class="nav-link nav-link-external" '
+            f'href="{html.escape(href)}" '
+            f'target="_blank" rel="noopener noreferrer" '
+            f'title="Opens in a new tab" '
+            f'aria-label="{safe_label} (external link)">'
+            f"{safe_label}"
+            f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
+            f"</a>"
         )
     lines.append("</nav>")
     return "\n".join(lines) + "\n"
+
 
 
 def write_field_html(label: str, value: str) -> str:
@@ -500,12 +508,18 @@ def tier_nav_html(tiers: list[str]) -> str:
 
 def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     parts: list[str] = []
+    # Match home: site title above nav so layout doesn't jump between pages.
+    parts.append("<h1>Sparroh's Mycopunk Builds</h1>\n")
     parts.append(site_nav_for_build_page())
 
     main: list[str] = []
-    main.append(f"<h1>{html.escape(page.title)}</h1>\n")
+    # Collection title is h2.page-title (site h1 is already used above).
+    main.append(
+        f'<h2 class="page-title">{html.escape(page.title)}</h2>\n'
+    )
     if page.description:
         main.append(f"<p>{html.escape(page.description)}</p>\n")
+
 
     if not prepared:
         main.append("<p><em>No builds recorded yet.</em></p>\n")
@@ -651,8 +665,17 @@ def write_readme() -> None:
     lines.append("")
     lines.append('<nav class="top-nav top-nav-secondary" aria-label="Resources">')
     for label, href in RESOURCE_NAV_ITEMS:
-        lines.append(f'  <a class="nav-link" href="{href}">{label}</a>')
+        lines.append(
+            f'  <a class="nav-link nav-link-external" href="{href}" '
+            f'target="_blank" rel="noopener noreferrer" '
+            f'title="Opens in a new tab" '
+            f'aria-label="{label} (external link)">'
+            f"{label}"
+            f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
+            f"</a>"
+        )
     lines.append("</nav>")
+
     lines.append("")
     lines.append("")
     lines.append("---")
