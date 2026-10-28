@@ -490,36 +490,44 @@ def tier_nav_html(tiers: list[str]) -> str:
 def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     parts: list[str] = []
     parts.append(site_nav_for_build_page())
-    parts.append(f"<h1>{html.escape(page.title)}</h1>\n")
-    if page.description:
-        parts.append(f"<p>{html.escape(page.description)}</p>\n")
-    parts.append(tier_nav_html(present_tiers(prepared)))
 
+    main: list[str] = []
+    main.append(f"<h1>{html.escape(page.title)}</h1>\n")
+    if page.description:
+        main.append(f"<p>{html.escape(page.description)}</p>\n")
 
     if not prepared:
-        parts.append("<p><em>No builds recorded yet.</em></p>\n")
-        return "".join(parts)
+        main.append("<p><em>No builds recorded yet.</em></p>\n")
+    else:
+        current_tier = None
+        for row in prepared:
+            tier = row["_tier"]
+            if tier != current_tier:
+                tclass = tier_class(tier)
+                tid = tier_id(tier)
+                main.append(
+                    f'<h2 id="{tid}" class="tier-heading {tclass}">'
+                    f"{html.escape(tier)} Tier</h2>\n\n"
+                )
+                current_tier = tier
 
-    current_tier = None
-    for row in prepared:
-        tier = row["_tier"]
-        if tier != current_tier:
-            tclass = tier_class(tier)
-            tid = tier_id(tier)
-            parts.append(
-                f'<h2 id="{tid}" class="tier-heading {tclass}">'
-                f"{html.escape(tier)} Tier</h2>\n\n"
-            )
-            current_tier = tier
+            if page.mode == "times":
+                main.append(times_row_html(page, row))
+            elif page.mode == "full":
+                main.append(build_card_html(page, row, include_details=True))
+            else:
+                main.append(build_card_html(page, row, include_details=False))
 
-        if page.mode == "times":
-            parts.append(times_row_html(page, row))
-        elif page.mode == "full":
-            parts.append(build_card_html(page, row, include_details=True))
-        else:
-            parts.append(build_card_html(page, row, include_details=False))
+    tiers = present_tiers(prepared) if prepared else []
+    parts.append('<div class="build-layout">\n')
+    parts.append(tier_nav_html(tiers))
+    parts.append('<div class="build-main">\n')
+    parts.extend(main)
+    parts.append("</div>\n")
+    parts.append("</div>\n")
 
     return "".join(parts)
+
 
 
 def write_html_page(page: PageConfig, prepared: list[dict]) -> None:
