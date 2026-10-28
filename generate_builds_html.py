@@ -143,8 +143,21 @@ def weapon_image_stem(weapon: str) -> str:
 
 
 def find_image(image_dir: Path, *name_parts: str) -> str | None:
-    """Return image filename inside image_dir, or None."""
+    """Return the real on-disk image filename inside image_dir, or None.
+
+    Always returns the actual filesystem name (correct casing) so GitHub Pages
+    (Linux, case-sensitive) can resolve paths. Windows Path.exists() is
+    case-insensitive and would otherwise let us emit wrong extensions like .PNG
+    when the file is really .png.
+    """
     if not image_dir.is_dir():
+        return None
+
+    # Map lower(name) -> actual name for case-correct lookups
+    lower_map = {
+        p.name.lower(): p.name for p in image_dir.iterdir() if p.is_file()
+    }
+    if not lower_map:
         return None
 
     base = normalize_key(*name_parts)
@@ -169,17 +182,11 @@ def find_image(image_dir: Path, *name_parts: str) -> str | None:
 
     for stem in ordered:
         for ext in IMAGE_EXTENSIONS:
-            path = image_dir / f"{stem}{ext}"
-            if path.exists():
-                return path.name
-
-    lower_map = {p.name.lower(): p.name for p in image_dir.iterdir() if p.is_file()}
-    for stem in ordered:
-        for ext in IMAGE_EXTENSIONS:
             hit = lower_map.get(f"{stem}{ext}".lower())
             if hit:
                 return hit
     return None
+
 
 
 def parse_kill_time(value: str | None) -> float | None:
