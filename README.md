@@ -4,8 +4,6 @@
 
 Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).
 
-Tiers on build pages are assigned automatically from kill time (bell-curve split).
-
 > **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). Build guides are HTML — links below go to `.html` pages that render with CSS.
 
 <nav class="top-nav" aria-label="Build collections">
@@ -16,10 +14,6 @@ Tiers on build pages are assigned automatically from kill time (bell-curve split
 </nav>
 
 <nav class="top-nav top-nav-secondary" aria-label="Resources">
-  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_restriction_builds.csv">Restriction CSV</a>
-  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_infusion_builds.csv">Infusion CSV</a>
-  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_rotation_builds.csv">Rotation CSV</a>
-  <a class="nav-link" href="https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_upgrade_times.csv">Upgrade Times CSV</a>
   <a class="nav-link" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/">Grid Solver</a>
   <a class="nav-link" href="https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215">Carson's Builds</a>
   <a class="nav-link" href="https://mycopunk.miraheze.org/wiki/Main_Page">Wiki</a>

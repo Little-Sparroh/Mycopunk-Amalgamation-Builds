@@ -56,22 +56,6 @@ SITE_NAV_ITEMS = (
 )
 
 RESOURCE_NAV_ITEMS = (
-    (
-        "Restriction CSV",
-        f"{GITHUB_BLOB}/builds/no_restriction_builds.csv",
-    ),
-    (
-        "Infusion CSV",
-        f"{GITHUB_BLOB}/builds/no_infusion_builds.csv",
-    ),
-    (
-        "Rotation CSV",
-        f"{GITHUB_BLOB}/builds/no_rotation_builds.csv",
-    ),
-    (
-        "Upgrade Times CSV",
-        f"{GITHUB_BLOB}/builds/no_upgrade_times.csv",
-    ),
     ("Grid Solver", "https://coloronx.github.io/Mycopunk_UpgradeSolver/"),
     (
         "Carson's Builds",
@@ -82,6 +66,7 @@ RESOURCE_NAV_ITEMS = (
     ("Speedrunning", "https://www.speedrun.com/Mycopunk"),
     ("Tiermaker", "https://tiermaker.com/user/18796434"),
 )
+
 
 
 @dataclass(frozen=True)
@@ -105,10 +90,7 @@ PAGES = [
         title="No Restriction Builds (Threat 6 Amalgamation)",
         image_dir=ROOT / "assets" / "images" / "no_restriction_images",
         mode="full",
-        description=(
-            "Full loadouts with no self-imposed restrictions. "
-            "Tiers are assigned automatically from kill time (bell-curve split)."
-        ),
+        description="Full loadouts with no self-imposed restrictions.",
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_infusion_builds.csv",
@@ -116,10 +98,7 @@ PAGES = [
         title="No Infusion Builds (Threat 6 Amalgamation)",
         image_dir=ROOT / "assets" / "images" / "no_infusion_images",
         mode="slim",
-        description=(
-            "Builds without infusion. "
-            "Tiers are assigned automatically from kill time (bell-curve split)."
-        ),
+        description="Builds without infusion.",
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_rotation_builds.csv",
@@ -127,10 +106,7 @@ PAGES = [
         title="No Rotation Builds (Threat 6 Amalgamation)",
         image_dir=ROOT / "assets" / "images" / "no_rotation_images",
         mode="slim",
-        description=(
-            "Builds without rotation. "
-            "Tiers are assigned automatically from kill time (bell-curve split)."
-        ),
+        description="Builds without rotation.",
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_upgrade_times.csv",
@@ -139,11 +115,11 @@ PAGES = [
         image_dir=ROOT / "assets" / "images" / "no_upgrade_images",
         mode="times",
         description=(
-            "Baseline weapon kill times with no upgrades on Threat 1 Amalgamation. "
-            "Tiers are assigned automatically from kill time (bell-curve split)."
+            "Baseline weapon kill times with no upgrades on Threat 1 Amalgamation."
         ),
     ),
 ]
+
 
 
 
@@ -517,10 +493,8 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     parts.append(f"<h1>{html.escape(page.title)}</h1>\n")
     if page.description:
         parts.append(f"<p>{html.escape(page.description)}</p>\n")
-    parts.append(
-        f'<p><a href="{html.escape(github_csv_url(page))}">Source CSV</a></p>\n'
-    )
     parts.append(tier_nav_html(present_tiers(prepared)))
+
 
     if not prepared:
         parts.append("<p><em>No builds recorded yet.</em></p>\n")
@@ -621,9 +595,8 @@ def write_index_html() -> None:
         "<h1>Mycopunk Amalgamation Builds</h1>\n",
         "<p>Builds tested on Threat 6 Amalgamation "
         "(the difficulty the game is balanced around).</p>\n",
-        "<p>Tiers on build pages are assigned automatically from kill time "
-        "(bell-curve split).</p>\n",
         knowledge_section_html(),
+
     ]
     doc = html_document(
         "Mycopunk Amalgamation Builds",
@@ -644,11 +617,10 @@ def write_readme() -> None:
         "",
         "Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).",
         "",
-        "Tiers on build pages are assigned automatically from kill time (bell-curve split).",
-        "",
         "> **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). "
         "Build guides are HTML — links below go to `.html` pages that render with CSS.",
         "",
+
         '<nav class="top-nav" aria-label="Build collections">',
     ]
     for label, filename in SITE_NAV_ITEMS:
