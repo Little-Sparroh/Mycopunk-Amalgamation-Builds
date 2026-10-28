@@ -17,6 +17,7 @@
   <a class="nav-link" href="https://mycopunk.miraheze.org/wiki/Main_Page">Wiki</a>
   <a class="nav-link" href="https://thunderstore.io/c/mycopunk/">Modding</a>
   <a class="nav-link" href="https://www.speedrun.com/Mycopunk">Speedrunning</a>
+  <a class="nav-link" href="https://tiermaker.com/user/18796434">Tiermaker</a>
 </nav>
 
 

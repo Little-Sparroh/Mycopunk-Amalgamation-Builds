@@ -87,7 +87,7 @@ PAGES = [
     PageConfig(
         csv_path=ROOT / "builds" / "no_restriction_builds.csv",
         html_path=ROOT / "builds" / "no_restriction_builds.html",
-        title="No Restriction Builds (Threat 6 Amalgamation)",
+        title="No Restriction Builds",
         image_dir=ROOT / "assets" / "images" / "no_restriction_images",
         mode="full",
         description="Full loadouts with no self-imposed restrictions.",
@@ -95,7 +95,7 @@ PAGES = [
     PageConfig(
         csv_path=ROOT / "builds" / "no_infusion_builds.csv",
         html_path=ROOT / "builds" / "no_infusion_builds.html",
-        title="No Infusion Builds (Threat 6 Amalgamation)",
+        title="No Infusion Builds",
         image_dir=ROOT / "assets" / "images" / "no_infusion_images",
         mode="slim",
         description="Builds without infusion.",
@@ -103,7 +103,7 @@ PAGES = [
     PageConfig(
         csv_path=ROOT / "builds" / "no_rotation_builds.csv",
         html_path=ROOT / "builds" / "no_rotation_builds.html",
-        title="No Rotation Builds (Threat 6 Amalgamation)",
+        title="No Rotation Builds",
         image_dir=ROOT / "assets" / "images" / "no_rotation_images",
         mode="slim",
         description="Builds without rotation.",
@@ -111,7 +111,7 @@ PAGES = [
     PageConfig(
         csv_path=ROOT / "builds" / "no_upgrade_times.csv",
         html_path=ROOT / "builds" / "no_upgrade_times.html",
-        title="No Upgrade Times (Threat 1 Amalgamation)",
+        title="No Upgrade Times",
         image_dir=ROOT / "assets" / "images" / "no_upgrade_images",
         mode="times",
         description=(
