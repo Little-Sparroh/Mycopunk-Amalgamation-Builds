@@ -350,6 +350,10 @@ def site_nav_html(*, prefix: str = "", include_home: bool = False) -> str:
 
 def site_nav_for_home() -> str:
     lines = ['<nav class="top-nav" aria-label="Build collections">']
+    # Inert Home chip keeps nav width aligned with build pages (which link Home).
+    lines.append(
+        '  <span class="nav-link nav-link-current" aria-current="page">Home</span>'
+    )
     for label, filename in SITE_NAV_ITEMS:
         lines.append(
             f'  <a class="nav-link" href="builds/{html.escape(filename)}">'
@@ -357,6 +361,7 @@ def site_nav_for_home() -> str:
         )
     lines.append("</nav>")
     return "\n".join(lines) + "\n"
+
 
 
 def site_nav_for_build_page() -> str:
@@ -633,11 +638,16 @@ def write_readme() -> None:
         '<nav class="top-nav" aria-label="Build collections">',
     ]
 
+    # Inert Home chip — same slot as build pages so chips don't shift.
+    lines.append(
+        '  <span class="nav-link nav-link-current" aria-current="page">Home</span>'
+    )
     for label, filename in SITE_NAV_ITEMS:
         lines.append(
             f'  <a class="nav-link" href="builds/{filename}">{label}</a>'
         )
     lines.append("</nav>")
+
     lines.append("")
     lines.append('<nav class="top-nav top-nav-secondary" aria-label="Resources">')
     for label, href in RESOURCE_NAV_ITEMS:

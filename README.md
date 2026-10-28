@@ -5,6 +5,7 @@
 > **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). Build guides are HTML — links below go to `.html` pages that render with CSS.
 
 <nav class="top-nav" aria-label="Build collections">
+  <span class="nav-link nav-link-current" aria-current="page">Home</span>
   <a class="nav-link" href="builds/no_restriction_builds.html">No Restriction</a>
   <a class="nav-link" href="builds/no_infusion_builds.html">No Infusion</a>
   <a class="nav-link" href="builds/no_rotation_builds.html">No Rotation</a>

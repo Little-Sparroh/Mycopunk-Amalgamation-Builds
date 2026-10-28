@@ -487,6 +487,27 @@ a:focus-visible {
   transform: translateY(1px);
 }
 
+/* Current-page placeholder (e.g. Home on index) — same footprint, not a link */
+.nav-link-current,
+span.nav-link {
+  color: var(--color-text-muted) !important;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  border-color: var(--color-border);
+  background: var(--color-bg-elevated);
+  box-shadow: none;
+}
+
+.nav-link-current:hover,
+span.nav-link:hover {
+  border-color: var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text-muted) !important;
+  box-shadow: none;
+}
+
+
 .nav-link .nav-csv {
   color: var(--color-text-subtle);
   font-size: 0.85em;
