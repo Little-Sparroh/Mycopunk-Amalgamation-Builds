@@ -49,11 +49,12 @@ WEAPON_ALIASES = {
 IMAGE_EXTENSIONS = (".PNG", ".png", ".jpg", ".jpeg", ".webp")
 
 SITE_NAV_ITEMS = (
-    ("No Restriction", "no_restriction_builds.html"),
-    ("No Infusion", "no_infusion_builds.html"),
-    ("No Rotation", "no_rotation_builds.html"),
+    ("Late Game Builds", "no_restriction_builds.html"),
+    ("Mid Game Builds", "no_infusion_builds.html"),
+    ("Early Game Builds", "no_rotation_builds.html"),
     ("No Upgrade Times", "no_upgrade_times.html"),
 )
+
 
 RESOURCE_NAV_ITEMS = (
     ("Grid Solver", "https://coloronx.github.io/Mycopunk_UpgradeSolver/"),
@@ -86,26 +87,28 @@ PAGES = [
     PageConfig(
         csv_path=ROOT / "builds" / "no_restriction_builds.csv",
         html_path=ROOT / "builds" / "no_restriction_builds.html",
-        title="No Restriction Builds",
+        title="Late Game Builds",
         image_dir=ROOT / "assets" / "images" / "no_restriction_images",
         mode="full",
-        description="Full loadouts with no self-imposed restrictions.",
+        description=(
+            "Full endgame loadouts when you have everything available."
+        ),
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_infusion_builds.csv",
         html_path=ROOT / "builds" / "no_infusion_builds.html",
-        title="No Infusion Builds",
+        title="Mid Game Builds",
         image_dir=ROOT / "assets" / "images" / "no_infusion_images",
         mode="slim",
-        description="Builds without infusion.",
+        description="Solid mid-progression setups before full endgame options.",
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_rotation_builds.csv",
         html_path=ROOT / "builds" / "no_rotation_builds.html",
-        title="No Rotation Builds",
+        title="Early Game Builds",
         image_dir=ROOT / "assets" / "images" / "no_rotation_images",
         mode="slim",
-        description="Builds without rotation.",
+        description="Early-game setups with limited options still in mind.",
     ),
     PageConfig(
         csv_path=ROOT / "builds" / "no_upgrade_times.csv",
@@ -118,6 +121,7 @@ PAGES = [
         ),
     ),
 ]
+
 
 
 
@@ -519,13 +523,20 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     )
     if page.description:
         main.append(f"<p>{html.escape(page.description)}</p>\n")
-    csv_name = html.escape(page.csv_path.name)
+    csv_href = html.escape(github_csv_url(page))
     main.append(
         f'<p class="page-source">'
-        f'<a href="{csv_name}">View CSV</a>'
+        f'<a class="page-source-external" href="{csv_href}" '
+        f'target="_blank" rel="noopener noreferrer" '
+        f'title="Opens in a new tab" '
+        f'aria-label="View CSV on GitHub (external link)">'
+        f"View CSV"
+        f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
+        f"</a>"
         f" — condensed table for a quick glance"
         f"</p>\n"
     )
+
 
 
 

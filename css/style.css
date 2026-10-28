@@ -97,7 +97,7 @@
   --sticky-nav-offset: 0.5rem;
   --tier-sidebar-width: 4.5rem;
   /* Clear sticky top-nav blur/background when the tier rail sticks */
-  --tier-nav-top: calc(var(--sticky-nav-offset) + 5.5rem);
+  --tier-nav-top: calc(var(--sticky-nav-offset) + 5rem);
 
 
 
@@ -265,6 +265,19 @@ h1 + p,
 .page-source a {
   font-weight: 550;
 }
+
+.page-source-external .nav-external-mark {
+  margin-inline-start: 0.15rem;
+  color: var(--color-text-subtle);
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+.page-source-external:hover .nav-external-mark {
+  color: var(--color-link-hover);
+  opacity: 1;
+}
+
 
 
 /* -----------------------------------------------------------------------------
