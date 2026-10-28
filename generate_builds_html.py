@@ -48,14 +48,6 @@ WEAPON_ALIASES = {
 
 IMAGE_EXTENSIONS = (".PNG", ".png", ".jpg", ".jpeg", ".webp")
 
-SITE_NAV_ITEMS = (
-    ("Late Game Builds", "no_restriction_builds.html"),
-    ("Mid Game Builds", "no_infusion_builds.html"),
-    ("Early Game Builds", "no_rotation_builds.html"),
-    ("No Upgrade Times", "no_upgrade_times.html"),
-)
-
-
 RESOURCE_NAV_ITEMS = (
     ("Grid Solver", "https://coloronx.github.io/Mycopunk_UpgradeSolver/"),
     (
@@ -66,6 +58,142 @@ RESOURCE_NAV_ITEMS = (
     ("Modding", "https://thunderstore.io/c/mycopunk/"),
     ("Speedrunning", "https://www.speedrun.com/Mycopunk"),
 )
+
+
+@dataclass(frozen=True)
+class NavItem:
+    """One leaf page in the site nav tree."""
+
+    label: str
+    section: str  # builds | guides | tierlists
+    filename: str  # e.g. no_restriction_builds.html
+    description: str = ""
+
+    @property
+    def page_id(self) -> str:
+        return self.filename.removesuffix(".html")
+
+    def href(self, *, from_section: str | None) -> str:
+        """Relative href from a page in from_section (None = site root)."""
+        if from_section is None:
+            return f"{self.section}/{self.filename}"
+        if from_section == self.section:
+            return self.filename
+        return f"../{self.section}/{self.filename}"
+
+
+def _title_from_stem(stem: str) -> str:
+    """bruisers_bears_guide -> Bruiser's Bears Guide (light cleanup)."""
+    text = stem.strip().lower()
+    for suffix in ("_guide", "_tierlist", "_builds", "_times"):
+        if text.endswith(suffix) and suffix != "_builds":
+            # keep _builds/_times in display via explicit labels; strip guide/tierlist noise later
+            pass
+    # Explicit pretty names for known stems
+    pretty = {
+        "no_restriction_builds": "Late Game Builds",
+        "no_infusion_builds": "Mid Game Builds",
+        "no_rotation_builds": "Early Game Builds",
+        "no_upgrade_times": "No Upgrade Times",
+        "building_guide": "Building Guide",
+        "carver_guide": "Carver Guide",
+        "globbler_guide": "Globbler Guide",
+        "modding_guide": "Modding Guide",
+        "bruisers_bears_guide": "Bruiser's Bears Guide",
+        "roachards_pumpkins_guide": "Roachard's Pumpkins Guide",
+        "terrys_pumpkins_guide": "Terry's Pumpkins Guide",
+        "weapon_tierlist": "Weapon Tierlist",
+    }
+    if text in pretty:
+        return pretty[text]
+    words = text.replace("-", "_").split("_")
+    return " ".join(w.capitalize() for w in words if w)
+
+
+NAV_SECTIONS: tuple[tuple[str, str], ...] = (
+    ("builds", "Builds"),
+    ("guides", "Guides"),
+    ("tierlists", "Tierlists"),
+)
+
+# Leaf items — builds keep explicit order/labels; guides/tierlists from known files.
+BUILD_NAV_ITEMS: tuple[NavItem, ...] = (
+    NavItem(
+        "Late Game Builds",
+        "builds",
+        "no_restriction_builds.html",
+        "Full endgame loadouts when you have everything available.",
+    ),
+    NavItem(
+        "Mid Game Builds",
+        "builds",
+        "no_infusion_builds.html",
+        "Solid mid-progression setups before full endgame options.",
+    ),
+    NavItem(
+        "Early Game Builds",
+        "builds",
+        "no_rotation_builds.html",
+        "Early-game setups with limited options still in mind.",
+    ),
+    NavItem(
+        "No Upgrade Times",
+        "builds",
+        "no_upgrade_times.html",
+        "Baseline weapon kill times with no upgrades on Threat 1 Amalgamation.",
+    ),
+)
+
+GUIDE_CSV_STEMS: tuple[str, ...] = (
+    "building_guide",
+    "carver_guide",
+    "globbler_guide",
+    "modding_guide",
+    "bruisers_bears_guide",
+    "roachards_pumpkins_guide",
+    "terrys_pumpkins_guide",
+)
+
+TIERLIST_CSV_STEMS: tuple[str, ...] = ("weapon_tierlist",)
+
+
+def _nav_items_for_stems(
+    section: str, stems: tuple[str, ...], default_desc: str
+) -> tuple[NavItem, ...]:
+    items: list[NavItem] = []
+    for stem in stems:
+        items.append(
+            NavItem(
+                label=_title_from_stem(stem),
+                section=section,
+                filename=f"{stem}.html",
+                description=default_desc,
+            )
+        )
+    return tuple(items)
+
+
+GUIDE_NAV_ITEMS = _nav_items_for_stems(
+    "guides",
+    GUIDE_CSV_STEMS,
+    "Guide content coming soon.",
+)
+TIERLIST_NAV_ITEMS = _nav_items_for_stems(
+    "tierlists",
+    TIERLIST_CSV_STEMS,
+    "Tierlist content coming soon.",
+)
+
+NAV_ITEMS_BY_SECTION: dict[str, tuple[NavItem, ...]] = {
+    "builds": BUILD_NAV_ITEMS,
+    "guides": GUIDE_NAV_ITEMS,
+    "tierlists": TIERLIST_NAV_ITEMS,
+}
+
+ALL_NAV_ITEMS: tuple[NavItem, ...] = (
+    BUILD_NAV_ITEMS + GUIDE_NAV_ITEMS + TIERLIST_NAV_ITEMS
+)
+
 
 
 
@@ -312,7 +440,9 @@ def present_tiers(rows: list[dict]) -> list[str]:
     return [t for t in TIER_ORDER if t in seen]
 
 
-def html_document(title: str, css_href: str, body: str) -> str:
+def html_document(
+    title: str, css_href: str, body: str, *, extra_head: str = ""
+) -> str:
     return (
         "<!DOCTYPE html>\n"
         '<html lang="en">\n'
@@ -321,6 +451,7 @@ def html_document(title: str, css_href: str, body: str) -> str:
         '  <meta name="viewport" content="width=device-width, initial-scale=1">\n'
         f"  <title>{html.escape(title)}</title>\n"
         f'  <link rel="stylesheet" href="{html.escape(css_href)}">\n'
+        f"{extra_head}"
         "</head>\n"
         "<body>\n"
         f"{body}"
@@ -329,58 +460,135 @@ def html_document(title: str, css_href: str, body: str) -> str:
     )
 
 
-def site_nav_html(*, prefix: str = "", include_home: bool = False) -> str:
-    """prefix is '' for root or '../' from builds/."""
-    lines = ['<nav class="top-nav" aria-label="Build collections">']
-    if include_home:
-        lines.append(
-            f'  <a class="nav-link" href="{prefix}index.html">Home</a>'
-        )
-    for label, filename in SITE_NAV_ITEMS:
-        href = f"{prefix}builds/{filename}" if prefix == "" else filename
-        if prefix == "" and not filename.startswith("builds/"):
-            href = f"builds/{filename}"
-        if include_home and prefix:
-            # From builds/*.html, peer pages are same-folder filenames
-            href = filename
-        elif not include_home and prefix == "":
-            href = f"builds/{filename}"
-        lines.append(
-            f'  <a class="nav-link" href="{html.escape(href)}">{html.escape(label)}</a>'
-        )
-    lines.append("</nav>")
-    return "\n".join(lines) + "\n"
+def home_href(*, from_section: str | None) -> str:
+    if from_section is None:
+        return "index.html"
+    return "../index.html"
 
 
-def site_nav_for_home() -> str:
-    lines = ['<nav class="top-nav" aria-label="Build collections">']
-    # Inert Home chip keeps nav width aligned with build pages (which link Home).
-    lines.append(
-        '  <span class="nav-link nav-link-current" aria-current="page">Home</span>'
+def _nav_link(
+    label: str,
+    href: str | None,
+    *,
+    current: bool = False,
+) -> str:
+    """Render a chip: link, or inert current-page span."""
+    safe = html.escape(label)
+    if current or href is None:
+        return (
+            f'  <span class="nav-link nav-link-current" aria-current="page">'
+            f"{safe}</span>"
+        )
+    return (
+        f'  <a class="nav-link" href="{html.escape(href)}">{safe}</a>'
     )
-    for label, filename in SITE_NAV_ITEMS:
+
+
+def _nav_dropdown(
+    section_id: str,
+    section_label: str,
+    items: tuple[NavItem, ...],
+    *,
+    from_section: str | None,
+) -> str:
+    """Click-to-open dropdown of section children (used on Home)."""
+    lines = [
+        f'  <details class="nav-dropdown" data-nav-section="{html.escape(section_id)}">',
+        f'    <summary class="nav-link nav-dropdown-trigger">'
+        f"{html.escape(section_label)}"
+        f'<span class="nav-dropdown-caret" aria-hidden="true"></span>'
+        f"</summary>",
+        '    <div class="nav-dropdown-panel" role="group" '
+        f'aria-label="{html.escape(section_label)} pages">',
+    ]
+    for item in items:
+        href = item.href(from_section=from_section)
         lines.append(
-            f'  <a class="nav-link" href="builds/{html.escape(filename)}">'
-            f"{html.escape(label)}</a>"
+            f'      <a class="nav-dropdown-link" href="{html.escape(href)}">'
+            f"{html.escape(item.label)}</a>"
         )
-    lines.append("</nav>")
-    return "\n".join(lines) + "\n"
+    lines.append("    </div>")
+    lines.append("  </details>")
+    return "\n".join(lines)
 
 
+NAV_SCRIPT = """\
+<script>
+(function () {
+  var nav = document.querySelector(".top-nav");
+  if (!nav) return;
+  var dropdowns = nav.querySelectorAll("details.nav-dropdown");
+  if (!dropdowns.length) return;
 
-def site_nav_for_build_page() -> str:
-    lines = ['<nav class="top-nav" aria-label="Build collections">']
-    lines.append('  <a class="nav-link" href="../index.html">Home</a>')
-    for label, filename in SITE_NAV_ITEMS:
+  function closeAll(except) {
+    dropdowns.forEach(function (d) {
+      if (d !== except) d.open = false;
+    });
+  }
+
+  dropdowns.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) closeAll(d);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!nav.contains(e.target)) closeAll(null);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAll(null);
+  });
+})();
+</script>
+"""
+
+
+def primary_nav_html(
+    *,
+    section: str | None,
+    current_filename: str | None = None,
+) -> str:
+    """Primary sticky nav.
+
+    section=None (home): [Home] [Builds ▾] [Guides ▾] [Tierlists ▾]
+    section=builds|guides|tierlists: [Home] + that section's children (flat)
+    """
+    lines = ['<nav class="top-nav" aria-label="Site">']
+
+    # Home chip
+    if section is None:
         lines.append(
-            f'  <a class="nav-link" href="{html.escape(filename)}">'
-            f"{html.escape(label)}</a>"
+            _nav_link("Home", None, current=True)
         )
+    else:
+        lines.append(_nav_link("Home", home_href(from_section=section)))
+
+    if section is None:
+        # Condensed top-level with dropdowns
+        for sec_id, sec_label in NAV_SECTIONS:
+            items = NAV_ITEMS_BY_SECTION[sec_id]
+            lines.append(
+                _nav_dropdown(
+                    sec_id, sec_label, items, from_section=None
+                )
+            )
+    else:
+        # In-section: show that section's children as flat chips
+        items = NAV_ITEMS_BY_SECTION.get(section, ())
+        for item in items:
+            is_current = item.filename == current_filename
+            href = None if is_current else item.href(from_section=section)
+            lines.append(
+                _nav_link(item.label, href, current=is_current)
+            )
+
     lines.append("</nav>")
     return "\n".join(lines) + "\n"
 
 
 def resource_nav_html() -> str:
+
     lines = [
         '<nav class="top-nav top-nav-secondary" aria-label="Resources">'
     ]
@@ -514,7 +722,12 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     parts: list[str] = []
     # Match home: site title above nav so layout doesn't jump between pages.
     parts.append("<h1>Sparroh's Mycopunk Builds</h1>\n")
-    parts.append(site_nav_for_build_page())
+    parts.append(
+        primary_nav_html(
+            section="builds", current_filename=page.html_name
+        )
+    )
+
 
     main: list[str] = []
     # Collection title is h2.page-title (site h1 is already used above).
@@ -643,9 +856,10 @@ Snowball is used purely for cryo which is niche.</p>
 def write_index_html() -> None:
     body_parts = [
         "<h1>Sparroh's Mycopunk Builds</h1>\n",
-        site_nav_for_home(),
+        primary_nav_html(section=None),
         resource_nav_html(),
         knowledge_section_html(),
+        NAV_SCRIPT,
     ]
     doc = html_document(
         "Sparroh's Mycopunk Builds",
@@ -658,6 +872,61 @@ def write_index_html() -> None:
     print(f"Wrote {path.relative_to(ROOT)}")
 
 
+def github_csv_url_for_nav_item(item: NavItem) -> str:
+    rel = f"{item.section}/{item.page_id}.csv"
+    return f"{GITHUB_BLOB}/{rel}"
+
+
+def stub_page_body_html(item: NavItem) -> str:
+    """Minimal section page until guide/tierlist content is filled in."""
+    parts: list[str] = []
+    parts.append("<h1>Sparroh's Mycopunk Builds</h1>\n")
+    parts.append(
+        primary_nav_html(
+            section=item.section, current_filename=item.filename
+        )
+    )
+    parts.append(f'<h2 class="page-title">{html.escape(item.label)}</h2>\n')
+    desc = item.description or "Content coming soon."
+    parts.append(f"<p>{html.escape(desc)}</p>\n")
+    csv_href = html.escape(github_csv_url_for_nav_item(item))
+    parts.append(
+        f'<p class="page-source">'
+        f'<a class="page-source-external" href="{csv_href}" '
+        f'target="_blank" rel="noopener noreferrer" '
+        f'title="Opens in a new tab" '
+        f'aria-label="View CSV on GitHub (external link)">'
+        f"View CSV"
+        f'<span class="nav-external-mark" aria-hidden="true">↗</span>'
+        f"</a>"
+        f" — source data for this page"
+        f"</p>\n"
+    )
+    parts.append(
+        '<p class="page-placeholder"><em>Full page content will appear here '
+        "once the CSV is filled in.</em></p>\n"
+    )
+    return "".join(parts)
+
+
+def write_stub_page(item: NavItem) -> None:
+    html_path = ROOT / item.section / item.filename
+    html_path.parent.mkdir(parents=True, exist_ok=True)
+    # Ensure sibling CSV exists so links and future generators have a target.
+    csv_path = ROOT / item.section / f"{item.page_id}.csv"
+    if not csv_path.exists():
+        csv_path.write_text("", encoding="utf-8", newline="\n")
+    body = stub_page_body_html(item)
+    doc = html_document(item.label, "../css/style.css", body)
+    html_path.write_text(doc, encoding="utf-8", newline="\n")
+    print(f"Wrote {html_path.relative_to(ROOT)} (stub)")
+
+
+def write_section_stub_pages() -> None:
+    for item in GUIDE_NAV_ITEMS + TIERLIST_NAV_ITEMS:
+        write_stub_page(item)
+
+
 def write_readme() -> None:
     """Keep README in sync with HTML nav targets for the repo landing page."""
     lines = [
@@ -668,20 +937,22 @@ def write_readme() -> None:
         "> **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). "
         "Build guides are HTML — links below go to `.html` pages that render with CSS.",
         "",
-        '<nav class="top-nav" aria-label="Build collections">',
+        '<nav class="top-nav" aria-label="Site">',
+        '  <span class="nav-link nav-link-current" aria-current="page">Home</span>',
     ]
 
-    # Inert Home chip — same slot as build pages so chips don't shift.
-    lines.append(
-        '  <span class="nav-link nav-link-current" aria-current="page">Home</span>'
-    )
-    for label, filename in SITE_NAV_ITEMS:
-        lines.append(
-            f'  <a class="nav-link" href="builds/{filename}">{label}</a>'
-        )
+    # README can't run dropdown JS reliably; list sections as nested markdown.
     lines.append("</nav>")
-
     lines.append("")
+    for sec_id, sec_label in NAV_SECTIONS:
+        lines.append(f"### {sec_label}")
+        lines.append("")
+        for item in NAV_ITEMS_BY_SECTION[sec_id]:
+            lines.append(
+                f"- [{item.label}]({item.section}/{item.filename})"
+            )
+        lines.append("")
+
     lines.append('<nav class="top-nav top-nav-secondary" aria-label="Resources">')
     for label, href in RESOURCE_NAV_ITEMS:
         lines.append(
@@ -773,9 +1044,11 @@ def main() -> None:
     ensure_nojekyll()
     write_index_html()
     write_readme()
+    write_section_stub_pages()
     for page in PAGES:
         generate_page(page)
 
 
 if __name__ == "__main__":
     main()
+

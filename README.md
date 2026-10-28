@@ -4,13 +4,30 @@
 
 > **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). Build guides are HTML — links below go to `.html` pages that render with CSS.
 
-<nav class="top-nav" aria-label="Build collections">
+<nav class="top-nav" aria-label="Site">
   <span class="nav-link nav-link-current" aria-current="page">Home</span>
-  <a class="nav-link" href="builds/no_restriction_builds.html">Late Game Builds</a>
-  <a class="nav-link" href="builds/no_infusion_builds.html">Mid Game Builds</a>
-  <a class="nav-link" href="builds/no_rotation_builds.html">Early Game Builds</a>
-  <a class="nav-link" href="builds/no_upgrade_times.html">No Upgrade Times</a>
 </nav>
+
+### Builds
+
+- [Late Game Builds](builds/no_restriction_builds.html)
+- [Mid Game Builds](builds/no_infusion_builds.html)
+- [Early Game Builds](builds/no_rotation_builds.html)
+- [No Upgrade Times](builds/no_upgrade_times.html)
+
+### Guides
+
+- [Building Guide](guides/building_guide.html)
+- [Carver Guide](guides/carver_guide.html)
+- [Globbler Guide](guides/globbler_guide.html)
+- [Modding Guide](guides/modding_guide.html)
+- [Bruiser's Bears Guide](guides/bruisers_bears_guide.html)
+- [Roachard's Pumpkins Guide](guides/roachards_pumpkins_guide.html)
+- [Terry's Pumpkins Guide](guides/terrys_pumpkins_guide.html)
+
+### Tierlists
+
+- [Weapon Tierlist](tierlists/weapon_tierlist.html)
 
 <nav class="top-nav top-nav-secondary" aria-label="Resources">
   <a class="nav-link nav-link-external" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Grid Solver (external link)">Grid Solver<span class="nav-external-mark" aria-hidden="true">↗</span></a>

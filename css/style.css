@@ -533,7 +533,7 @@ a:focus-visible {
 
 /* Current-page placeholder (e.g. Home on index) — same footprint, not a link */
 .nav-link-current,
-span.nav-link {
+span.nav-link:not(.nav-dropdown-trigger) {
   color: var(--color-text-muted) !important;
   cursor: default;
   pointer-events: none;
@@ -544,12 +544,121 @@ span.nav-link {
 }
 
 .nav-link-current:hover,
-span.nav-link:hover {
+span.nav-link:not(.nav-dropdown-trigger):hover {
   border-color: var(--color-border);
   background: var(--color-bg-elevated);
   color: var(--color-text-muted) !important;
   box-shadow: none;
 }
+
+/* -----------------------------------------------------------------------------
+   Nav dropdowns (Home: Builds / Guides / Tierlists)
+   ----------------------------------------------------------------------------- */
+
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.nav-dropdown > summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-dropdown-trigger {
+  /* summary uses .nav-link; keep interactive */
+  pointer-events: auto;
+}
+
+.nav-dropdown-caret {
+  display: inline-block;
+  width: 0.45em;
+  height: 0.45em;
+  margin-inline-start: 0.35rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.1em) rotate(45deg);
+  opacity: 0.75;
+  transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+}
+
+.nav-dropdown[open] > .nav-dropdown-trigger {
+  border-color: var(--color-accent);
+  background: var(--color-surface-hover);
+  color: var(--color-link-hover) !important;
+}
+
+.nav-dropdown[open] .nav-dropdown-caret {
+  transform: translateY(0.12em) rotate(225deg);
+  opacity: 1;
+}
+
+.nav-dropdown-panel {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: max(12rem, 100%);
+  max-width: min(20rem, 90vw);
+  padding: var(--space-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-bg-elevated) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+}
+
+@supports not (background: color-mix(in srgb, black 50%, white)) {
+  .nav-dropdown-panel {
+    background: rgba(18, 24, 31, 0.98);
+  }
+}
+
+.nav-dropdown-link {
+  display: block;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-link) !important;
+  text-decoration: none;
+  font-size: var(--text-sm);
+  font-weight: 550;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+.nav-dropdown-link:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border);
+  color: var(--color-link-hover) !important;
+}
+
+.nav-dropdown-link:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.page-placeholder {
+  margin-top: var(--space-6);
+  color: var(--color-text-subtle);
+  font-size: var(--text-sm);
+}
+
 
 
 .nav-link .nav-csv {

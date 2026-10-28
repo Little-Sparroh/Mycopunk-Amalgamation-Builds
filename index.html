@@ -8,12 +8,35 @@
 </head>
 <body>
 <h1>Sparroh's Mycopunk Builds</h1>
-<nav class="top-nav" aria-label="Build collections">
+<nav class="top-nav" aria-label="Site">
   <span class="nav-link nav-link-current" aria-current="page">Home</span>
-  <a class="nav-link" href="builds/no_restriction_builds.html">Late Game Builds</a>
-  <a class="nav-link" href="builds/no_infusion_builds.html">Mid Game Builds</a>
-  <a class="nav-link" href="builds/no_rotation_builds.html">Early Game Builds</a>
-  <a class="nav-link" href="builds/no_upgrade_times.html">No Upgrade Times</a>
+  <details class="nav-dropdown" data-nav-section="builds">
+    <summary class="nav-link nav-dropdown-trigger">Builds<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Builds pages">
+      <a class="nav-dropdown-link" href="builds/no_restriction_builds.html">Late Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_infusion_builds.html">Mid Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_rotation_builds.html">Early Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_upgrade_times.html">No Upgrade Times</a>
+    </div>
+  </details>
+  <details class="nav-dropdown" data-nav-section="guides">
+    <summary class="nav-link nav-dropdown-trigger">Guides<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Guides pages">
+      <a class="nav-dropdown-link" href="guides/building_guide.html">Building Guide</a>
+      <a class="nav-dropdown-link" href="guides/carver_guide.html">Carver Guide</a>
+      <a class="nav-dropdown-link" href="guides/globbler_guide.html">Globbler Guide</a>
+      <a class="nav-dropdown-link" href="guides/modding_guide.html">Modding Guide</a>
+      <a class="nav-dropdown-link" href="guides/bruisers_bears_guide.html">Bruiser&#x27;s Bears Guide</a>
+      <a class="nav-dropdown-link" href="guides/roachards_pumpkins_guide.html">Roachard&#x27;s Pumpkins Guide</a>
+      <a class="nav-dropdown-link" href="guides/terrys_pumpkins_guide.html">Terry&#x27;s Pumpkins Guide</a>
+    </div>
+  </details>
+  <details class="nav-dropdown" data-nav-section="tierlists">
+    <summary class="nav-link nav-dropdown-trigger">Tierlists<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Tierlists pages">
+      <a class="nav-dropdown-link" href="tierlists/weapon_tierlist.html">Weapon Tierlist</a>
+    </div>
+  </details>
 </nav>
 <nav class="top-nav top-nav-secondary" aria-label="Resources">
   <a class="nav-link nav-link-external" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Grid Solver (external link)">Grid Solver<span class="nav-external-mark" aria-hidden="true">↗</span></a>
@@ -62,5 +85,33 @@ They are more usable now as tools rather than main damage sources.</p>
 Shock is weapon-dependent. Acid is mostly a last resort.<br>
 Photon is excellent for Normal damage, ammo regen, or multi-element support.<br>
 Snowball is used purely for cryo which is niche.</p>
+<script>
+(function () {
+  var nav = document.querySelector(".top-nav");
+  if (!nav) return;
+  var dropdowns = nav.querySelectorAll("details.nav-dropdown");
+  if (!dropdowns.length) return;
+
+  function closeAll(except) {
+    dropdowns.forEach(function (d) {
+      if (d !== except) d.open = false;
+    });
+  }
+
+  dropdowns.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) closeAll(d);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!nav.contains(e.target)) closeAll(null);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAll(null);
+  });
+})();
+</script>
 </body>
 </html>
