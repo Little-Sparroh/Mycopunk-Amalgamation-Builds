@@ -64,7 +64,6 @@ RESOURCE_NAV_ITEMS = (
     ("Wiki", "https://mycopunk.miraheze.org/wiki/Main_Page"),
     ("Modding", "https://thunderstore.io/c/mycopunk/"),
     ("Speedrunning", "https://www.speedrun.com/Mycopunk"),
-    ("Tiermaker", "https://tiermaker.com/user/18796434"),
 )
 
 
