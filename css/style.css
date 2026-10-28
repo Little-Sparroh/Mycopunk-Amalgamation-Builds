@@ -659,6 +659,244 @@ span.nav-link:not(.nav-dropdown-trigger):hover {
   font-size: var(--text-sm);
 }
 
+/* -----------------------------------------------------------------------------
+   Weapon tierlist (Tiermaker-style rows)
+   ----------------------------------------------------------------------------- */
+
+.tierlist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: var(--space-6) 0 var(--space-10);
+  max-width: none;
+}
+
+.tierlist-row {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  gap: 0;
+  min-height: 5.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.tierlist-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--space-2);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  border-inline-end: 1px solid var(--color-border);
+  user-select: none;
+}
+
+/* Tier label colors — row also carries .tier-s … .tier-f */
+.tierlist-row.tier-s .tierlist-label {
+  color: var(--tier-s);
+  background: var(--tier-s-bg);
+  border-inline-end-color: var(--tier-s-border);
+}
+
+.tierlist-row.tier-a .tierlist-label {
+  color: var(--tier-a);
+  background: var(--tier-a-bg);
+  border-inline-end-color: var(--tier-a-border);
+}
+
+.tierlist-row.tier-b .tierlist-label {
+  color: var(--tier-b);
+  background: var(--tier-b-bg);
+  border-inline-end-color: var(--tier-b-border);
+}
+
+.tierlist-row.tier-c .tierlist-label {
+  color: var(--tier-c);
+  background: var(--tier-c-bg);
+  border-inline-end-color: var(--tier-c-border);
+}
+
+.tierlist-row.tier-d .tierlist-label {
+  color: var(--tier-d);
+  background: var(--tier-d-bg);
+  border-inline-end-color: var(--tier-d-border);
+}
+
+.tierlist-row.tier-f .tierlist-label {
+  color: var(--tier-f);
+  background: var(--tier-f-bg);
+  border-inline-end-color: var(--tier-f-border);
+}
+
+.tierlist-items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  background: color-mix(in srgb, var(--color-bg) 55%, var(--color-surface));
+  min-height: 100%;
+}
+
+@supports not (background: color-mix(in srgb, black 50%, white)) {
+  .tierlist-items {
+    background: rgba(11, 15, 20, 0.45);
+  }
+}
+
+.tierlist-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 6.75rem;
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    border-color var(--duration) var(--ease),
+    box-shadow var(--duration) var(--ease),
+    background-color var(--duration) var(--ease);
+}
+
+.tierlist-item[open],
+.tierlist-item:hover {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.tierlist-item[open] {
+  border-color: var(--color-accent);
+  z-index: 2;
+}
+
+.tierlist-item-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-1) var(--space-2);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.tierlist-item-summary::-webkit-details-marker {
+  display: none;
+}
+
+.tierlist-item-summary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.tierlist-item-static {
+  align-items: center;
+  padding: var(--space-2) var(--space-1);
+  gap: var(--space-1);
+}
+
+.tierlist-item-img {
+  display: block;
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.tierlist-item-img-missing {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-surface),
+    var(--color-surface) 6px,
+    var(--color-bg) 6px,
+    var(--color-bg) 12px
+  );
+}
+
+.tierlist-item-name {
+  display: block;
+  width: 100%;
+  padding: 0 var(--space-1);
+  color: var(--color-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.tierlist-item-caret {
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-top: 0.1rem;
+  border-right: 1.5px solid var(--color-text-subtle);
+  border-bottom: 1.5px solid var(--color-text-subtle);
+  transform: translateY(-0.1em) rotate(45deg);
+  opacity: 0.7;
+  transition: transform var(--duration) var(--ease), opacity var(--duration) var(--ease);
+}
+
+.tierlist-item[open] .tierlist-item-caret {
+  transform: translateY(0.1em) rotate(225deg);
+  opacity: 1;
+  border-color: var(--color-accent);
+}
+
+.tierlist-item-comment {
+  padding: var(--space-2) var(--space-2) var(--space-3);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.tierlist-item-comment p {
+  margin: 0;
+  max-width: none;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+/* Expanded tile can grow wider so comment is readable */
+.tierlist-item[open] {
+  width: min(18rem, 100%);
+}
+
+@media (max-width: 640px) {
+  .tierlist-row {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .tierlist-label {
+    font-size: var(--text-lg);
+  }
+
+  .tierlist-item {
+    width: 5.75rem;
+  }
+
+  .tierlist-item[open] {
+    width: min(100%, 16rem);
+  }
+
+  .tierlist-item-img {
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+}
+
+
 
 
 .nav-link .nav-csv {
