@@ -96,7 +96,9 @@
   --build-image-width: min(380px, 100%);
   --sticky-nav-offset: 0.5rem;
   --tier-sidebar-width: 4.5rem;
-  --tier-nav-top: calc(var(--sticky-nav-offset) + 3.5rem);
+  /* Clear sticky top-nav blur/background when the tier rail sticks */
+  --tier-nav-top: calc(var(--sticky-nav-offset) + 4.5rem);
+
 
 
   /* Motion */
@@ -250,11 +252,20 @@ h1 + p,
 }
 
 
-/* Markdown source CSV link near top of build pages */
-h1 + p + p,
-h1 + p + p a {
+/* Source CSV link under collection title / description */
+.page-source {
+  margin-top: calc(-1 * var(--space-3));
+  margin-bottom: var(--space-6);
+  max-width: var(--prose-max);
+  color: var(--color-text-subtle);
   font-size: var(--text-sm);
+  line-height: var(--leading-snug);
 }
+
+.page-source a {
+  font-weight: 550;
+}
+
 
 /* -----------------------------------------------------------------------------
    Links

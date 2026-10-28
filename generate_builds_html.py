@@ -519,6 +519,14 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
     )
     if page.description:
         main.append(f"<p>{html.escape(page.description)}</p>\n")
+    csv_name = html.escape(page.csv_path.name)
+    main.append(
+        f'<p class="page-source">'
+        f'<a href="{csv_name}">View CSV</a>'
+        f" — condensed table for a quick glance"
+        f"</p>\n"
+    )
+
 
 
     if not prepared:
