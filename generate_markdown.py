@@ -1,4 +1,8 @@
-"""Generate builds/*.md pages from builds/*.csv for the Mycopunk Amalgamation Builds site."""
+"""Generate builds/*.md + HTML site pages for Mycopunk Amalgamation Builds.
+
+GitHub Pages serves .md as raw text. Navigable pages must be real .html files.
+This script writes both Markdown (repo-friendly) and HTML (Pages site).
+"""
 
 from __future__ import annotations
 
@@ -43,6 +47,41 @@ WEAPON_ALIASES = {
 
 IMAGE_EXTENSIONS = (".PNG", ".png", ".jpg", ".jpeg", ".webp")
 
+SITE_NAV_ITEMS = (
+    ("No Restriction", "no_restriction_builds.html"),
+    ("No Infusion", "no_infusion_builds.html"),
+    ("No Rotation", "no_rotation_builds.html"),
+    ("No Upgrade Times", "no_upgrade_times.html"),
+)
+
+RESOURCE_NAV_ITEMS = (
+    (
+        "Restriction CSV",
+        f"{GITHUB_BLOB}/builds/no_restriction_builds.csv",
+    ),
+    (
+        "Infusion CSV",
+        f"{GITHUB_BLOB}/builds/no_infusion_builds.csv",
+    ),
+    (
+        "Rotation CSV",
+        f"{GITHUB_BLOB}/builds/no_rotation_builds.csv",
+    ),
+    (
+        "Upgrade Times CSV",
+        f"{GITHUB_BLOB}/builds/no_upgrade_times.csv",
+    ),
+    ("Grid Solver", "https://coloronx.github.io/Mycopunk_UpgradeSolver/"),
+    (
+        "Carson's Builds",
+        "https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215",
+    ),
+    ("Wiki", "https://mycopunk.miraheze.org/wiki/Main_Page"),
+    ("Modding", "https://thunderstore.io/c/mycopunk/"),
+    ("Speedrunning", "https://www.speedrun.com/Mycopunk"),
+    ("Tiermaker", "https://tiermaker.com/user/18796434"),
+)
+
 
 @dataclass(frozen=True)
 class PageConfig:
@@ -52,6 +91,14 @@ class PageConfig:
     image_dir: Path
     mode: str  # "full" | "slim" | "times"
     description: str = ""
+
+    @property
+    def html_path(self) -> Path:
+        return self.md_path.with_suffix(".html")
+
+    @property
+    def html_name(self) -> str:
+        return self.html_path.name
 
 
 PAGES = [
@@ -115,7 +162,6 @@ def weapon_image_stem(weapon: str) -> str:
     key = raw.lower()
     if key in WEAPON_ALIASES:
         return WEAPON_ALIASES[key]
-    # Also try without trailing words already normalized
     stem = normalize_key(raw)
     if stem in WEAPON_ALIASES:
         return WEAPON_ALIASES[stem]
@@ -130,19 +176,16 @@ def find_image(image_dir: Path, *name_parts: str) -> str | None:
     base = normalize_key(*name_parts)
     candidates = [base]
 
-    # swarm launcher mitosis sometimes stored as swarmlauncher_mitosis
     if base.startswith("swarm_launcher_"):
         candidates.append("swarmlauncher_" + base[len("swarm_launcher_") :])
     if base.startswith("swarm_"):
         candidates.append("swarmlauncher_" + base[len("swarm_") :])
 
-    # times-page style: weapon_render
     if len(name_parts) == 1:
         stem = weapon_image_stem(name_parts[0])
         candidates.append(f"{stem}_render")
         candidates.append(stem)
 
-    # de-dupe preserving order
     seen: set[str] = set()
     ordered: list[str] = []
     for c in candidates:
@@ -156,7 +199,6 @@ def find_image(image_dir: Path, *name_parts: str) -> str | None:
             if path.exists():
                 return path.name
 
-    # Case-insensitive directory scan fallback
     lower_map = {p.name.lower(): p.name for p in image_dir.iterdir() if p.is_file()}
     for stem in ordered:
         for ext in IMAGE_EXTENSIONS:
@@ -189,7 +231,6 @@ def auto_tier(index: int, n: int) -> str:
         return "F"
     if n == 1:
         return "S"
-    # Use midpoint of the rank slot so edges don't all collapse into S/F oddly
     percentile = (index + 0.5) / n
     for cutoff, tier in TIER_CUTOFFS:
         if percentile <= cutoff:
@@ -209,7 +250,6 @@ def is_present(value: str) -> bool:
 
 
 def rel_image_src(page: PageConfig, filename: str) -> str:
-    # md lives in builds/; images in assets/images/<folder>/
     folder = page.image_dir.name
     return f"../assets/images/{folder}/{filename}"
 
@@ -231,9 +271,10 @@ def load_rows(page: PageConfig) -> list[dict]:
             return []
         rows = []
         for row in reader:
-            # Normalize keys (strip BOM/spaces)
             cleaned = {
-                (k.strip() if isinstance(k, str) else k): (v.strip() if isinstance(v, str) else v)
+                (k.strip() if isinstance(k, str) else k): (
+                    v.strip() if isinstance(v, str) else v
+                )
                 for k, v in row.items()
                 if k is not None
             }
@@ -271,32 +312,7 @@ def prepare_build_rows(rows: list[dict], time_key: str = "Kill Time") -> list[di
     return timed + untimed
 
 
-def write_header(out, page: PageConfig) -> None:
-    out.write('<link rel="stylesheet" href="../css/style.css">\n\n')
-    out.write(f"# {page.title}\n\n")
-    if page.description:
-        out.write(f"{page.description}\n\n")
-    out.write(f"[Source CSV]({github_csv_url(page)})\n\n")
-
-
-def write_empty_page(page: PageConfig) -> None:
-    with page.md_path.open("w", encoding="utf-8") as out:
-        write_header(out, page)
-        out.write("_No builds recorded yet._\n")
-
-
-def write_field(out, label: str, value: str) -> None:
-    if not is_present(value):
-        return
-    # Collapse newlines inside CSV cells
-    value = re.sub(r"\s*\n\s*", ", ", value).strip()
-    out.write(
-        f"    <p><strong>{html.escape(label)}:</strong> {html.escape(value)}</p>\n"
-    )
-
-
 def tier_class(tier: str) -> str:
-    """CSS modifier class for a tier letter (S–F)."""
     letter = (tier or "F").strip().upper()[:1]
     if letter not in TIER_ORDER:
         letter = "F"
@@ -304,31 +320,103 @@ def tier_class(tier: str) -> str:
 
 
 def tier_id(tier: str) -> str:
-    """Fragment id for a tier section anchor."""
     return f"tier-{(tier or 'F').strip().upper()[:1].lower()}"
 
 
 def present_tiers(rows: list[dict]) -> list[str]:
-    """Unique tiers in display order (S→F) that appear in prepared rows."""
     seen = {r.get("_tier", "F") for r in rows}
     return [t for t in TIER_ORDER if t in seen]
 
 
-def write_tier_nav(out, tiers: list[str]) -> None:
-    if not tiers:
-        return
-    out.write('<nav class="tier-nav" aria-label="Jump to tier">\n')
-    out.write('  <span class="tier-nav-label">Tiers</span>\n')
-    for tier in tiers:
-        tclass = tier_class(tier)
-        tid = tier_id(tier)
-        out.write(
-            f'  <a class="tier-nav-link {tclass}" href="#{tid}">{html.escape(tier)}</a>\n'
+def html_document(title: str, css_href: str, body: str) -> str:
+    return (
+        "<!DOCTYPE html>\n"
+        '<html lang="en">\n'
+        "<head>\n"
+        '  <meta charset="utf-8">\n'
+        '  <meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f"  <title>{html.escape(title)}</title>\n"
+        f'  <link rel="stylesheet" href="{html.escape(css_href)}">\n'
+        "</head>\n"
+        "<body>\n"
+        f"{body}"
+        "</body>\n"
+        "</html>\n"
+    )
+
+
+def site_nav_html(*, prefix: str = "", include_home: bool = False) -> str:
+    """prefix is '' for root or '../' from builds/."""
+    lines = ['<nav class="top-nav" aria-label="Build collections">']
+    if include_home:
+        lines.append(
+            f'  <a class="nav-link" href="{prefix}index.html">Home</a>'
         )
-    out.write("</nav>\n\n")
+    for label, filename in SITE_NAV_ITEMS:
+        href = f"{prefix}builds/{filename}" if prefix == "" else filename
+        if prefix == "" and not filename.startswith("builds/"):
+            href = f"builds/{filename}"
+        if include_home and prefix:
+            # From builds/*.html, peer pages are same-folder filenames
+            href = filename
+        elif not include_home and prefix == "":
+            href = f"builds/{filename}"
+        lines.append(
+            f'  <a class="nav-link" href="{html.escape(href)}">{html.escape(label)}</a>'
+        )
+    lines.append("</nav>")
+    return "\n".join(lines) + "\n"
 
 
-def write_build_card(out, page: PageConfig, row: dict, include_details: bool) -> None:
+def site_nav_for_home() -> str:
+    lines = ['<nav class="top-nav" aria-label="Build collections">']
+    for label, filename in SITE_NAV_ITEMS:
+        lines.append(
+            f'  <a class="nav-link" href="builds/{html.escape(filename)}">'
+            f"{html.escape(label)}</a>"
+        )
+    lines.append("</nav>")
+    return "\n".join(lines) + "\n"
+
+
+def site_nav_for_build_page() -> str:
+    lines = ['<nav class="top-nav" aria-label="Build collections">']
+    lines.append('  <a class="nav-link" href="../index.html">Home</a>')
+    for label, filename in SITE_NAV_ITEMS:
+        lines.append(
+            f'  <a class="nav-link" href="{html.escape(filename)}">'
+            f"{html.escape(label)}</a>"
+        )
+    lines.append("</nav>")
+    return "\n".join(lines) + "\n"
+
+
+def resource_nav_html() -> str:
+    lines = [
+        '<nav class="top-nav top-nav-secondary" aria-label="Resources">'
+    ]
+    for label, href in RESOURCE_NAV_ITEMS:
+        lines.append(
+            f'  <a class="nav-link" href="{html.escape(href)}">'
+            f"{html.escape(label)}</a>"
+        )
+    lines.append("</nav>")
+    return "\n".join(lines) + "\n"
+
+
+def write_field_html(label: str, value: str) -> str:
+    if not is_present(value):
+        return ""
+    value = re.sub(r"\s*\n\s*", ", ", value).strip()
+    return (
+        f"    <p><strong>{html.escape(label)}:</strong> "
+        f"{html.escape(value)}</p>\n"
+    )
+
+
+def build_card_html(
+    page: PageConfig, row: dict, include_details: bool
+) -> str:
     weapon = row["_weapon"]
     build = row["_build"]
     title = f"{weapon} – {build}" if build else weapon
@@ -336,23 +424,30 @@ def write_build_card(out, page: PageConfig, row: dict, include_details: bool) ->
     tier = row.get("_tier", "F")
     tclass = tier_class(tier)
 
-    out.write(f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n')
-    out.write('  <div class="build-text">\n')
-    out.write(f"    <h3>{html.escape(title)}</h3>\n")
-    out.write(
+    parts: list[str] = []
+    parts.append(
+        f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n'
+    )
+    parts.append('  <div class="build-text">\n')
+    parts.append(f"    <h3>{html.escape(title)}</h3>\n")
+    parts.append(
         f'    <p><strong>Kill Time:</strong> '
         f'<span class="kill-time">{html.escape(time_raw)}</span></p>\n'
     )
 
     if include_details:
-        write_field(out, "Primary", cell(row, "Primary"))
-        write_field(out, "Secondary", cell(row, "Secondary"))
-        write_field(out, "Grenade", cell(row, "Grenade"))
-        write_field(out, "Elemental Cocktail", cell(row, "Elemental Cocktail"))
-        write_field(out, "Upgrades", cell(row, "Upgrades"))
-        write_field(out, "Comments", cell(row, "Comments"))
+        parts.append(write_field_html("Primary", cell(row, "Primary")))
+        parts.append(write_field_html("Secondary", cell(row, "Secondary")))
+        parts.append(write_field_html("Grenade", cell(row, "Grenade")))
+        parts.append(
+            write_field_html(
+                "Elemental Cocktail", cell(row, "Elemental Cocktail")
+            )
+        )
+        parts.append(write_field_html("Upgrades", cell(row, "Upgrades")))
+        parts.append(write_field_html("Comments", cell(row, "Comments")))
 
-    out.write("  </div>\n")
+    parts.append("  </div>\n")
 
     img_name = None
     if build:
@@ -363,57 +458,117 @@ def write_build_card(out, page: PageConfig, row: dict, include_details: bool) ->
     if img_name:
         src = rel_image_src(page, img_name)
         alt = html.escape(f"{weapon} {build}".strip())
-        out.write('  <div class="build-image">\n')
-        out.write(f'    <img src="{src}" alt="{alt}">\n')
-        out.write("  </div>\n")
+        parts.append('  <div class="build-image">\n')
+        parts.append(f'    <img src="{src}" alt="{alt}">\n')
+        parts.append("  </div>\n")
 
-    out.write("</div>\n\n")
+    parts.append("</div>\n\n")
+    return "".join(parts)
 
 
-def write_times_row(out, page: PageConfig, row: dict) -> None:
+def times_row_html(page: PageConfig, row: dict) -> str:
     weapon = row["_weapon"]
     time_raw = row["_time_raw"] or "—"
     img_name = find_image(page.image_dir, weapon)
     tier = row.get("_tier", "F")
     tclass = tier_class(tier)
 
-    out.write(f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n')
-    out.write('  <div class="build-text">\n')
-    out.write(f"    <h3>{html.escape(weapon)}</h3>\n")
-    out.write(
+    parts: list[str] = []
+    parts.append(
+        f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n'
+    )
+    parts.append('  <div class="build-text">\n')
+    parts.append(f"    <h3>{html.escape(weapon)}</h3>\n")
+    parts.append(
         f'    <p><strong>Kill Time:</strong> '
         f'<span class="kill-time">{html.escape(time_raw)}</span></p>\n'
     )
-    out.write("  </div>\n")
+    parts.append("  </div>\n")
 
     if img_name:
         src = rel_image_src(page, img_name)
-        out.write('  <div class="build-image">\n')
-        out.write(
+        parts.append('  <div class="build-image">\n')
+        parts.append(
             f'    <img src="{src}" alt="{html.escape(weapon)}">\n'
         )
-        out.write("  </div>\n")
+        parts.append("  </div>\n")
 
-    out.write("</div>\n\n")
+    parts.append("</div>\n\n")
+    return "".join(parts)
 
 
-def generate_page(page: PageConfig) -> None:
-    page.md_path.parent.mkdir(parents=True, exist_ok=True)
-    rows = load_rows(page)
+def tier_nav_html(tiers: list[str]) -> str:
+    if not tiers:
+        return ""
+    lines = ['<nav class="tier-nav" aria-label="Jump to tier">']
+    lines.append('  <span class="tier-nav-label">Tiers</span>')
+    for tier in tiers:
+        tclass = tier_class(tier)
+        tid = tier_id(tier)
+        lines.append(
+            f'  <a class="tier-nav-link {tclass}" href="#{tid}">'
+            f"{html.escape(tier)}</a>"
+        )
+    lines.append("</nav>")
+    return "\n".join(lines) + "\n\n"
 
-    if page.mode == "times":
-        prepared = prepare_build_rows(rows, time_key="Kill Times")
-    else:
-        prepared = prepare_build_rows(rows, time_key="Kill Time")
+
+def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
+    parts: list[str] = []
+    parts.append(site_nav_for_build_page())
+    parts.append(f"<h1>{html.escape(page.title)}</h1>\n")
+    if page.description:
+        parts.append(f"<p>{html.escape(page.description)}</p>\n")
+    parts.append(
+        f'<p><a href="{html.escape(github_csv_url(page))}">Source CSV</a></p>\n'
+    )
+    parts.append(tier_nav_html(present_tiers(prepared)))
 
     if not prepared:
-        write_empty_page(page)
-        print(f"Wrote {page.md_path.relative_to(ROOT)} (empty)")
-        return
+        parts.append("<p><em>No builds recorded yet.</em></p>\n")
+        return "".join(parts)
 
+    current_tier = None
+    for row in prepared:
+        tier = row["_tier"]
+        if tier != current_tier:
+            tclass = tier_class(tier)
+            tid = tier_id(tier)
+            parts.append(
+                f'<h2 id="{tid}" class="tier-heading {tclass}">'
+                f"{html.escape(tier)} Tier</h2>\n\n"
+            )
+            current_tier = tier
+
+        if page.mode == "times":
+            parts.append(times_row_html(page, row))
+        elif page.mode == "full":
+            parts.append(build_card_html(page, row, include_details=True))
+        else:
+            parts.append(build_card_html(page, row, include_details=False))
+
+    return "".join(parts)
+
+
+def write_md_page(page: PageConfig, prepared: list[dict]) -> None:
+    """Legacy/repo Markdown mirror (still useful on github.com blob view)."""
+    page.md_path.parent.mkdir(parents=True, exist_ok=True)
     with page.md_path.open("w", encoding="utf-8", newline="\n") as out:
-        write_header(out, page)
-        write_tier_nav(out, present_tiers(prepared))
+        out.write('<link rel="stylesheet" href="../css/style.css">\n\n')
+        out.write(f"# {page.title}\n\n")
+        if page.description:
+            out.write(f"{page.description}\n\n")
+        out.write(f"[Source CSV]({github_csv_url(page)})\n\n")
+        # Prefer HTML site links in MD too when browsing locally via odd tools
+        out.write(
+            f"**Site page:** [{page.title}]({page.html_name})\n\n"
+        )
+
+        if not prepared:
+            out.write("_No builds recorded yet._\n")
+            return
+
+        out.write(tier_nav_html(present_tiers(prepared)))
 
         current_tier = None
         for row in prepared:
@@ -428,16 +583,207 @@ def generate_page(page: PageConfig) -> None:
                 current_tier = tier
 
             if page.mode == "times":
-                write_times_row(out, page, row)
+                out.write(times_row_html(page, row))
             elif page.mode == "full":
-                write_build_card(out, page, row, include_details=True)
+                out.write(build_card_html(page, row, include_details=True))
             else:
-                write_build_card(out, page, row, include_details=False)
+                out.write(build_card_html(page, row, include_details=False))
 
-    print(f"Wrote {page.md_path.relative_to(ROOT)} ({len(prepared)} rows)")
+
+def write_html_page(page: PageConfig, prepared: list[dict]) -> None:
+    page.html_path.parent.mkdir(parents=True, exist_ok=True)
+    body = page_body_html(page, prepared)
+    doc = html_document(page.title, "../css/style.css", body)
+    page.html_path.write_text(doc, encoding="utf-8", newline="\n")
+
+
+def generate_page(page: PageConfig) -> None:
+    rows = load_rows(page)
+    if page.mode == "times":
+        prepared = prepare_build_rows(rows, time_key="Kill Times")
+    else:
+        prepared = prepare_build_rows(rows, time_key="Kill Time")
+
+    write_md_page(page, prepared)
+    write_html_page(page, prepared)
+    n = len(prepared)
+    print(
+        f"Wrote {page.md_path.relative_to(ROOT)} + "
+        f"{page.html_path.relative_to(ROOT)} ({n} rows)"
+    )
+
+
+def knowledge_section_html() -> str:
+    """Static knowledge block for index.html (mirrors README)."""
+    return """\
+<hr>
+
+<h2>Knowledge to Give</h2>
+
+<h3>Weapon Combos</h3>
+<p>Most players use a Primary + Secondary setup.<br>
+The best secondaries are <strong>Plate Launcher</strong>, <strong>Swarm Launcher</strong>, and <strong>Shocklance</strong>. Globbler is an honorable mention.</p>
+<p>A dual-primary approach is also viable because dealing damage with one weapon regenerates ammo for the other.</p>
+
+<h3>Element</h3>
+<p>Choose your weapon element first.<br>
+Trident has Normal, Fire, and Acid. Grenade choice follows the element (Normal is generally weaker).</p>
+<p>Personal priority: <strong>Fire > Shock > Acid</strong>.<br>
+Photon Disc can substitute for any element but comes with its own drawbacks and advantages.</p>
+
+<h3>Employee</h3>
+<p>All employees are viable and fill different niches:</p>
+<ul>
+  <li><strong>Wrangler</strong> — Very fast movement with strong 3D navigation</li>
+  <li><strong>Bruiser</strong> — Good movement that depends on specific upgrades and player skill</li>
+  <li><strong>Scrapper</strong> — Easiest vertical movement</li>
+  <li><strong>Glider</strong> — Easiest horizontal movement</li>
+  <li><strong>Mycologist</strong> — Has the most complex gameplay but offers great overall movement.</li>
+</ul>
+<p>Some builds prefer certain employees:</p>
+<ul>
+  <li>Gunship Cannon + Gunship upgrade is not ideal on Bruiser</li>
+  <li>Accelerator damage scaling favors Wrangler</li>
+  <li>Carver gets the most out of Scrapper</li>
+</ul>
+
+<h3>Heavy Weapons</h3>
+<p>Heavy weapons are generally weak even with upgrades.<br>
+They are more usable now as tools rather than main damage sources.</p>
+
+<h3>Grenades</h3>
+<p>Fire is still the strongest overall.<br>
+Shock is weapon-dependent. Acid is mostly a last resort.<br>
+Photon is excellent for Normal damage, ammo regen, or multi-element support.<br>
+Snowball is used purely for cryo which is niche.</p>
+"""
+
+
+def write_index_html() -> None:
+    body_parts = [
+        site_nav_for_home(),
+        resource_nav_html(),
+        "<h1>Mycopunk Amalgamation Builds</h1>\n",
+        "<p>Builds tested on Threat 6 Amalgamation "
+        "(the difficulty the game is balanced around).</p>\n",
+        "<p>Tiers on build pages are assigned automatically from kill time "
+        "(bell-curve split).</p>\n",
+        knowledge_section_html(),
+    ]
+    doc = html_document(
+        "Mycopunk Amalgamation Builds",
+        "css/style.css",
+        "".join(body_parts),
+    )
+    path = ROOT / "index.html"
+    path.write_text(doc, encoding="utf-8", newline="\n")
+    print(f"Wrote {path.relative_to(ROOT)}")
+
+
+def write_readme() -> None:
+    """Keep README in sync with HTML nav targets for the repo landing page."""
+    lines = [
+        '<link rel="stylesheet" href="css/style.css">',
+        "",
+        "# Mycopunk Amalgamation Builds",
+        "",
+        "Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).",
+        "",
+        "Tiers on build pages are assigned automatically from kill time (bell-curve split).",
+        "",
+        "> **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). "
+        "Build guides are HTML — links below go to `.html` pages that render with CSS.",
+        "",
+        '<nav class="top-nav" aria-label="Build collections">',
+    ]
+    for label, filename in SITE_NAV_ITEMS:
+        lines.append(
+            f'  <a class="nav-link" href="builds/{filename}">{label}</a>'
+        )
+    lines.append("</nav>")
+    lines.append("")
+    lines.append('<nav class="top-nav top-nav-secondary" aria-label="Resources">')
+    for label, href in RESOURCE_NAV_ITEMS:
+        lines.append(f'  <a class="nav-link" href="{href}">{label}</a>')
+    lines.append("</nav>")
+    lines.append("")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+    lines.append("## Knowledge to Give")
+    lines.append("")
+    lines.append("### Weapon Combos")
+    lines.append("Most players use a Primary + Secondary setup.  ")
+    lines.append(
+        "The best secondaries are **Plate Launcher**, **Swarm Launcher**, and **Shocklance**. Globbler is an honorable mention."
+    )
+    lines.append("")
+    lines.append(
+        "A dual-primary approach is also viable because dealing damage with one weapon regenerates ammo for the other."
+    )
+    lines.append("")
+    lines.append("### Element")
+    lines.append("Choose your weapon element first.  ")
+    lines.append(
+        "Trident has Normal, Fire, and Acid. Grenade choice follows the element (Normal is generally weaker)."
+    )
+    lines.append("")
+    lines.append("Personal priority: **Fire > Shock > Acid**.  ")
+    lines.append(
+        "Photon Disc can substitute for any element but comes with its own drawbacks and advantages."
+    )
+    lines.append("")
+    lines.append("### Employee")
+    lines.append("All employees are viable and fill different niches:")
+    lines.append("")
+    lines.append("- **Wrangler** — Very fast movement with strong 3D navigation")
+    lines.append(
+        "- **Bruiser** — Good movement that depends on specific upgrades and player skill"
+    )
+    lines.append("- **Scrapper** — Easiest vertical movement")
+    lines.append("- **Glider** — Easiest horizontal movement")
+    lines.append(
+        "- **Mycologist** — Has the most complex gameplay but offers great overall movement."
+    )
+    lines.append("")
+    lines.append("Some builds prefer certain employees:")
+    lines.append("- Gunship Cannon + Gunship upgrade is not ideal on Bruiser")
+    lines.append("- Accelerator damage scaling favors Wrangler")
+    lines.append("- Carver gets the most out of Scrapper")
+    lines.append("")
+    lines.append("### Heavy Weapons")
+    lines.append("Heavy weapons are generally weak even with upgrades.  ")
+    lines.append(
+        "They are more usable now as tools rather than main damage sources."
+    )
+    lines.append("")
+    lines.append("### Grenades")
+    lines.append("Fire is still the strongest overall.  ")
+    lines.append("Shock is weapon-dependent. Acid is mostly a last resort.  ")
+    lines.append(
+        "Photon is excellent for Normal damage, ammo regen, or multi-element support.  "
+    )
+    lines.append("Snowball is used purely for cryo which is niche.")
+    lines.append("")
+
+    path = ROOT / "README.md"
+    path.write_text("\n".join(lines), encoding="utf-8", newline="\n")
+    print(f"Wrote {path.relative_to(ROOT)}")
+
+
+def ensure_nojekyll() -> None:
+    path = ROOT / ".nojekyll"
+    if not path.exists():
+        path.write_text("", encoding="utf-8")
+        print("Wrote .nojekyll")
+    else:
+        print(".nojekyll already present")
 
 
 def main() -> None:
+    ensure_nojekyll()
+    write_index_html()
+    write_readme()
     for page in PAGES:
         generate_page(page)
 

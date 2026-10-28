@@ -6,11 +6,13 @@ Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced arou
 
 Tiers on build pages are assigned automatically from kill time (bell-curve split).
 
+> **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). Build guides are HTML — links below go to `.html` pages that render with CSS.
+
 <nav class="top-nav" aria-label="Build collections">
-  <a class="nav-link" href="builds/no_restriction_builds.md">No Restriction</a>
-  <a class="nav-link" href="builds/no_infusion_builds.md">No Infusion</a>
-  <a class="nav-link" href="builds/no_rotation_builds.md">No Rotation</a>
-  <a class="nav-link" href="builds/no_upgrade_times.md">No Upgrade Times</a>
+  <a class="nav-link" href="builds/no_restriction_builds.html">No Restriction</a>
+  <a class="nav-link" href="builds/no_infusion_builds.html">No Infusion</a>
+  <a class="nav-link" href="builds/no_rotation_builds.html">No Rotation</a>
+  <a class="nav-link" href="builds/no_upgrade_times.html">No Upgrade Times</a>
 </nav>
 
 <nav class="top-nav top-nav-secondary" aria-label="Resources">
