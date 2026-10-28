@@ -1,8 +1,6 @@
 <link rel="stylesheet" href="css/style.css">
 
-# Mycopunk Amalgamation Builds
-
-Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).
+# Sparroh's Mycopunk Builds
 
 > **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). Build guides are HTML — links below go to `.html` pages that render with CSS.
 

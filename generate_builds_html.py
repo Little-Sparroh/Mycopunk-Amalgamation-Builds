@@ -590,19 +590,17 @@ Snowball is used purely for cryo which is niche.</p>
 
 def write_index_html() -> None:
     body_parts = [
+        "<h1>Sparroh's Mycopunk Builds</h1>\n",
         site_nav_for_home(),
         resource_nav_html(),
-        "<h1>Mycopunk Amalgamation Builds</h1>\n",
-        "<p>Builds tested on Threat 6 Amalgamation "
-        "(the difficulty the game is balanced around).</p>\n",
         knowledge_section_html(),
-
     ]
     doc = html_document(
-        "Mycopunk Amalgamation Builds",
+        "Sparroh's Mycopunk Builds",
         "css/style.css",
         "".join(body_parts),
     )
+
     path = ROOT / "index.html"
     path.write_text(doc, encoding="utf-8", newline="\n")
     print(f"Wrote {path.relative_to(ROOT)}")
@@ -613,16 +611,14 @@ def write_readme() -> None:
     lines = [
         '<link rel="stylesheet" href="css/style.css">',
         "",
-        "# Mycopunk Amalgamation Builds",
-        "",
-        "Builds tested on Threat 6 Amalgamation (the difficulty the game is balanced around).",
+        "# Sparroh's Mycopunk Builds",
         "",
         "> **GitHub Pages:** open **[index.html](index.html)** (or the Pages site root). "
         "Build guides are HTML — links below go to `.html` pages that render with CSS.",
         "",
-
         '<nav class="top-nav" aria-label="Build collections">',
     ]
+
     for label, filename in SITE_NAV_ITEMS:
         lines.append(
             f'  <a class="nav-link" href="builds/{filename}">{label}</a>'
