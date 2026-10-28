@@ -6,12 +6,22 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
 
 [Source CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_restriction_builds.csv)
 
-## S Tier
+<nav class="tier-nav" aria-label="Jump to tier">
+  <span class="tier-nav-label">Tiers</span>
+  <a class="tier-nav-link tier-s" href="#tier-s">S</a>
+  <a class="tier-nav-link tier-a" href="#tier-a">A</a>
+  <a class="tier-nav-link tier-b" href="#tier-b">B</a>
+  <a class="tier-nav-link tier-c" href="#tier-c">C</a>
+  <a class="tier-nav-link tier-d" href="#tier-d">D</a>
+  <a class="tier-nav-link tier-f" href="#tier-f">F</a>
+</nav>
 
-<div class="build">
+<h2 id="tier-s" class="tier-heading tier-s">S Tier</h2>
+
+<div class="build tier-s" data-tier="S">
   <div class="build-text">
     <h3>Jackrabbit – Double Barrel</h3>
-    <p><strong>Kill Time:</strong> 00:04.501</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:04.501</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -23,10 +33,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-s" data-tier="S">
   <div class="build-text">
     <h3>Laser Cannon – Scorched Earth</h3>
-    <p><strong>Kill Time:</strong> 00:07.972</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:07.972</span></p>
     <p><strong>Primary:</strong> Shocklance - Compressor</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Munition Siphon</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>
@@ -39,10 +49,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-s" data-tier="S">
   <div class="build-text">
     <h3>Jackrabbit – Pummeler</h3>
-    <p><strong>Kill Time:</strong> 00:08.429</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:08.429</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -54,12 +64,12 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-## A Tier
+<h2 id="tier-a" class="tier-heading tier-a">A Tier</h2>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Lead Flinger – Big Fat Doobie</h3>
-    <p><strong>Kill Time:</strong> 00:09.552</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:09.552</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -71,10 +81,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Gunship Cannon – Hull Piercer</h3>
-    <p><strong>Kill Time:</strong> 00:10.539</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:10.539</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -86,10 +96,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Trident – Lone Cannoneer</h3>
-    <p><strong>Kill Time:</strong> 00:11.052</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:11.052</span></p>
     <p><strong>Secondary:</strong> Globbler - The Glob</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -101,10 +111,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>DMLR – Autocycler</h3>
-    <p><strong>Kill Time:</strong> 00:11.537</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:11.537</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Photon Disc - Syzygy</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -116,10 +126,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Trident – Shredify</h3>
-    <p><strong>Kill Time:</strong> 00:13.804</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:13.804</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -131,10 +141,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Globbler – Flood</h3>
-    <p><strong>Kill Time:</strong> 00:15.387</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:15.387</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>
     <p><strong>Elemental Cocktail:</strong> Acid to Fire</p>
@@ -143,10 +153,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Gunship Cannon – Thumper</h3>
-    <p><strong>Kill Time:</strong> 00:15.569</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:15.569</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -158,12 +168,12 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-## B Tier
+<h2 id="tier-b" class="tier-heading tier-b">B Tier</h2>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Photon Disc – Bullet Time</h3>
-    <p><strong>Kill Time:</strong> 00:17.084</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:17.084</span></p>
     <p><strong>Primary:</strong> Plate Launcher - Fencing Construction</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -175,10 +185,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Gunship Cannon – Lagrange Halo</h3>
-    <p><strong>Kill Time:</strong> 00:18.583</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:18.583</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -190,10 +200,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Cycler – Infinity Burn</h3>
-    <p><strong>Kill Time:</strong> 00:18.597</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:18.597</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -205,10 +215,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Trident – Broadside</h3>
-    <p><strong>Kill Time:</strong> 00:19.017</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:19.017</span></p>
     <p><strong>Secondary:</strong> Globbler - The Glob</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -217,10 +227,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Cycler – Cyclotron</h3>
-    <p><strong>Kill Time:</strong> 00:19.755</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:19.755</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher</p>
     <p><strong>Grenade:</strong> Photon Disc - Syzygy</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -232,10 +242,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Shocklance – Auger Subroutine</h3>
-    <p><strong>Kill Time:</strong> 00:19.962</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:19.962</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -247,10 +257,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Lead Flinger – Self-Storage</h3>
-    <p><strong>Kill Time:</strong> 00:19.962</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:19.962</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -262,10 +272,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Plate Launcher – Damage Arc</h3>
-    <p><strong>Kill Time:</strong> 00:22.120</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:22.120</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -274,10 +284,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Accelerator – Inertia Accelerant</h3>
-    <p><strong>Kill Time:</strong> 00:27.101</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:27.101</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livelier</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -289,10 +299,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Diffraction Driver – Pocket Sniper</h3>
-    <p><strong>Kill Time:</strong> 00:27.197</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:27.197</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -304,10 +314,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Plate Launcher – Vector Interdiction</h3>
-    <p><strong>Kill Time:</strong> 00:29.083</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:29.083</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -319,12 +329,12 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-## C Tier
+<h2 id="tier-c" class="tier-heading tier-c">C Tier</h2>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Swarm Launcher – Mitosis</h3>
-    <p><strong>Kill Time:</strong> 00:29.608</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:29.608</span></p>
     <p><strong>Secondary:</strong> Shocklance - Compressor</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -336,10 +346,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Cycler – Shock Recursion</h3>
-    <p><strong>Kill Time:</strong> 00:29.900</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:29.900</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -351,10 +361,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Cycler – Corrode Siphon</h3>
-    <p><strong>Kill Time:</strong> 00:31.298</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:31.298</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Photon Disc - Syzygy</p>
     <p><strong>Elemental Cocktail:</strong> Acid to Fire</p>
@@ -366,10 +376,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Street Sweeper – Melodramatic Hero</h3>
-    <p><strong>Kill Time:</strong> 00:32.658</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:32.658</span></p>
     <p><strong>Primary:</strong> Shocklance - Compressor</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Munition Siphon</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>
@@ -382,10 +392,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Accelerator – Ruptured Spleen</h3>
-    <p><strong>Kill Time:</strong> 00:32.744</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:32.744</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livelier</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -397,10 +407,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Plate Launcher – Auto-Demolition</h3>
-    <p><strong>Kill Time:</strong> 00:33.336</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:33.336</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -412,10 +422,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Accelerator – Requeening</h3>
-    <p><strong>Kill Time:</strong> 00:34.292</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:34.292</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livelier</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -427,10 +437,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Shocklance – Railshot</h3>
-    <p><strong>Kill Time:</strong> 00:34.750</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:34.750</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -442,10 +452,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Jackrabbit – Pesticide</h3>
-    <p><strong>Kill Time:</strong> 00:35.277</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:35.277</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -457,10 +467,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Swarm Launcher – Guidance Array</h3>
-    <p><strong>Kill Time:</strong> 00:35.935</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:35.935</span></p>
     <p><strong>Secondary:</strong> Shocklance - Compressor</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -472,12 +482,12 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-## D Tier
+<h2 id="tier-d" class="tier-heading tier-d">D Tier</h2>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Diffraction Driver – Cryogenic Firing Chamber</h3>
-    <p><strong>Kill Time:</strong> 00:39.750</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:39.750</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Snowball - Serious Squall</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -489,10 +499,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>DMLR – Concussive Wave</h3>
-    <p><strong>Kill Time:</strong> 00:41.441</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:41.441</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -504,10 +514,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Shocklance – Compressor</h3>
-    <p><strong>Kill Time:</strong> 00:41.761</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:41.761</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -519,10 +529,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Diffraction Driver – Capacity Waiver</h3>
-    <p><strong>Kill Time:</strong> 00:42.115</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:42.115</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -534,10 +544,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Carver – Rage</h3>
-    <p><strong>Kill Time:</strong> 00:48.881</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:48.881</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Photon Disc - Syzygy</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -549,10 +559,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Mycologist – Melee</h3>
-    <p><strong>Kill Time:</strong> 01:18.182</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:18.182</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
     <p><strong>Elemental Cocktail:</strong> Fire to Acid</p>
@@ -561,10 +571,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Glider – M.I.R.V.</h3>
-    <p><strong>Kill Time:</strong> 01:54.197</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:54.197</span></p>
     <p><strong>Primary:</strong> Plate Launcher - Fencing Construction</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Incendiary Grenade - Internal Combustion</p>
@@ -576,12 +586,12 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-## F Tier
+<h2 id="tier-f" class="tier-heading tier-f">F Tier</h2>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Beam Ripper – Straggler&#x27;s Revenge</h3>
-    <p><strong>Kill Time:</strong> 02:00.519</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">02:00.519</span></p>
     <p><strong>Primary:</strong> Shocklance - Compressor</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Munition Siphon</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>
@@ -594,10 +604,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Globbler – Solidified Acid</h3>
-    <p><strong>Kill Time:</strong> 02:16.357</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">02:16.357</span></p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Voltaic Grenade - Livewire</p>
     <p><strong>Elemental Cocktail:</strong> Shock to Acid</p>
@@ -609,10 +619,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Mycologist – Sporadic Sprouting</h3>
-    <p><strong>Kill Time:</strong> 03:28.737</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">03:28.737</span></p>
     <p><strong>Primary:</strong> Diffraction Driver - Capacity Waiver (respec to Acid)</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Guidance Array</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Connected Systems</p>
@@ -624,10 +634,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Last Argument – Soul Reaper</h3>
-    <p><strong>Kill Time:</strong> 03:52.026</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">03:52.026</span></p>
     <p><strong>Primary:</strong> Shocklance - Compressor</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Munition Siphon</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>
@@ -640,10 +650,10 @@ Full loadouts with no self-imposed restrictions. Tiers are assigned automaticall
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Beam Ripper – Inverted Spear of Hell</h3>
-    <p><strong>Kill Time:</strong> 04:12.610</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">04:12.610</span></p>
     <p><strong>Primary:</strong> Shocklance - Compressor</p>
     <p><strong>Secondary:</strong> Swarm Launcher - Munition Siphon</p>
     <p><strong>Grenade:</strong> Caustic Grenade - Heavy Support</p>

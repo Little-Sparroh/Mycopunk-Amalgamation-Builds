@@ -295,17 +295,53 @@ def write_field(out, label: str, value: str) -> None:
     )
 
 
+def tier_class(tier: str) -> str:
+    """CSS modifier class for a tier letter (S–F)."""
+    letter = (tier or "F").strip().upper()[:1]
+    if letter not in TIER_ORDER:
+        letter = "F"
+    return f"tier-{letter.lower()}"
+
+
+def tier_id(tier: str) -> str:
+    """Fragment id for a tier section anchor."""
+    return f"tier-{(tier or 'F').strip().upper()[:1].lower()}"
+
+
+def present_tiers(rows: list[dict]) -> list[str]:
+    """Unique tiers in display order (S→F) that appear in prepared rows."""
+    seen = {r.get("_tier", "F") for r in rows}
+    return [t for t in TIER_ORDER if t in seen]
+
+
+def write_tier_nav(out, tiers: list[str]) -> None:
+    if not tiers:
+        return
+    out.write('<nav class="tier-nav" aria-label="Jump to tier">\n')
+    out.write('  <span class="tier-nav-label">Tiers</span>\n')
+    for tier in tiers:
+        tclass = tier_class(tier)
+        tid = tier_id(tier)
+        out.write(
+            f'  <a class="tier-nav-link {tclass}" href="#{tid}">{html.escape(tier)}</a>\n'
+        )
+    out.write("</nav>\n\n")
+
+
 def write_build_card(out, page: PageConfig, row: dict, include_details: bool) -> None:
     weapon = row["_weapon"]
     build = row["_build"]
     title = f"{weapon} – {build}" if build else weapon
     time_raw = row["_time_raw"] or "—"
+    tier = row.get("_tier", "F")
+    tclass = tier_class(tier)
 
-    out.write('<div class="build">\n')
+    out.write(f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n')
     out.write('  <div class="build-text">\n')
     out.write(f"    <h3>{html.escape(title)}</h3>\n")
     out.write(
-        f"    <p><strong>Kill Time:</strong> {html.escape(time_raw)}</p>\n"
+        f'    <p><strong>Kill Time:</strong> '
+        f'<span class="kill-time">{html.escape(time_raw)}</span></p>\n'
     )
 
     if include_details:
@@ -338,12 +374,15 @@ def write_times_row(out, page: PageConfig, row: dict) -> None:
     weapon = row["_weapon"]
     time_raw = row["_time_raw"] or "—"
     img_name = find_image(page.image_dir, weapon)
+    tier = row.get("_tier", "F")
+    tclass = tier_class(tier)
 
-    out.write('<div class="build">\n')
+    out.write(f'<div class="build {tclass}" data-tier="{html.escape(tier)}">\n')
     out.write('  <div class="build-text">\n')
     out.write(f"    <h3>{html.escape(weapon)}</h3>\n")
     out.write(
-        f"    <p><strong>Kill Time:</strong> {html.escape(time_raw)}</p>\n"
+        f'    <p><strong>Kill Time:</strong> '
+        f'<span class="kill-time">{html.escape(time_raw)}</span></p>\n'
     )
     out.write("  </div>\n")
 
@@ -372,14 +411,20 @@ def generate_page(page: PageConfig) -> None:
         print(f"Wrote {page.md_path.relative_to(ROOT)} (empty)")
         return
 
-    with page.md_path.open("w", encoding="utf-8") as out:
+    with page.md_path.open("w", encoding="utf-8", newline="\n") as out:
         write_header(out, page)
+        write_tier_nav(out, present_tiers(prepared))
 
         current_tier = None
         for row in prepared:
             tier = row["_tier"]
             if tier != current_tier:
-                out.write(f"## {tier} Tier\n\n")
+                tclass = tier_class(tier)
+                tid = tier_id(tier)
+                out.write(
+                    f'<h2 id="{tid}" class="tier-heading {tclass}">'
+                    f"{html.escape(tier)} Tier</h2>\n\n"
+                )
                 current_tier = tier
 
             if page.mode == "times":

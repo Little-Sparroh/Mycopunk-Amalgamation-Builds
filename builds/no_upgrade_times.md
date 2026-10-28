@@ -6,142 +6,152 @@ Baseline weapon kill times with no upgrades. Tiers are assigned automatically fr
 
 [Source CSV](https://github.com/Little-Sparroh/Mycopunk-Amalgamation-Builds/blob/main/builds/no_upgrade_times.csv)
 
-## S Tier
+<nav class="tier-nav" aria-label="Jump to tier">
+  <span class="tier-nav-label">Tiers</span>
+  <a class="tier-nav-link tier-s" href="#tier-s">S</a>
+  <a class="tier-nav-link tier-a" href="#tier-a">A</a>
+  <a class="tier-nav-link tier-b" href="#tier-b">B</a>
+  <a class="tier-nav-link tier-c" href="#tier-c">C</a>
+  <a class="tier-nav-link tier-d" href="#tier-d">D</a>
+  <a class="tier-nav-link tier-f" href="#tier-f">F</a>
+</nav>
 
-<div class="build">
+<h2 id="tier-s" class="tier-heading tier-s">S Tier</h2>
+
+<div class="build tier-s" data-tier="S">
   <div class="build-text">
     <h3>DMLR</h3>
-    <p><strong>Kill Time:</strong> 00:45.294</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:45.294</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/dmlr_render.PNG" alt="DMLR">
   </div>
 </div>
 
-## A Tier
+<h2 id="tier-a" class="tier-heading tier-a">A Tier</h2>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Cycler</h3>
-    <p><strong>Kill Time:</strong> 00:48.075</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:48.075</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/cycler_render.PNG" alt="Cycler">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-a" data-tier="A">
   <div class="build-text">
     <h3>Accelerator</h3>
-    <p><strong>Kill Time:</strong> 00:52.470</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:52.470</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/accelerator_render.PNG" alt="Accelerator">
   </div>
 </div>
 
-## B Tier
+<h2 id="tier-b" class="tier-heading tier-b">B Tier</h2>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Plate</h3>
-    <p><strong>Kill Time:</strong> 00:57.817</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:57.817</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/plate_launcher_render.PNG" alt="Plate">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Trident</h3>
-    <p><strong>Kill Time:</strong> 00:59.213</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">00:59.213</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/trident_render.PNG" alt="Trident">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-b" data-tier="B">
   <div class="build-text">
     <h3>Flinger</h3>
-    <p><strong>Kill Time:</strong> 01:04.177</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:04.177</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/lead_flinger_render.PNG" alt="Flinger">
   </div>
 </div>
 
-## C Tier
+<h2 id="tier-c" class="tier-heading tier-c">C Tier</h2>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Carver</h3>
-    <p><strong>Kill Time:</strong> 01:12.609</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:12.609</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/carver_render.PNG" alt="Carver">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Diffraction</h3>
-    <p><strong>Kill Time:</strong> 01:19.309</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:19.309</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/diffraction_driver_render.PNG" alt="Diffraction">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-c" data-tier="C">
   <div class="build-text">
     <h3>Shocklance</h3>
-    <p><strong>Kill Time:</strong> 01:20.462</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:20.462</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/shocklance_render.PNG" alt="Shocklance">
   </div>
 </div>
 
-## D Tier
+<h2 id="tier-d" class="tier-heading tier-d">D Tier</h2>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Globbler</h3>
-    <p><strong>Kill Time:</strong> 01:21.925</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:21.925</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/globbler_render.PNG" alt="Globbler">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-d" data-tier="D">
   <div class="build-text">
     <h3>Jackrabbit</h3>
-    <p><strong>Kill Time:</strong> 01:24.310</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">01:24.310</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/jackrabbit_render.PNG" alt="Jackrabbit">
   </div>
 </div>
 
-## F Tier
+<h2 id="tier-f" class="tier-heading tier-f">F Tier</h2>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Gunship</h3>
-    <p><strong>Kill Time:</strong> 02:12.898</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">02:12.898</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/gunship_cannon_render.PNG" alt="Gunship">
   </div>
 </div>
 
-<div class="build">
+<div class="build tier-f" data-tier="F">
   <div class="build-text">
     <h3>Swarm</h3>
-    <p><strong>Kill Time:</strong> 04:18.375</p>
+    <p><strong>Kill Time:</strong> <span class="kill-time">04:18.375</span></p>
   </div>
   <div class="build-image">
     <img src="../assets/images/no_upgrade_images/swarm_launcher_render.PNG" alt="Swarm">
