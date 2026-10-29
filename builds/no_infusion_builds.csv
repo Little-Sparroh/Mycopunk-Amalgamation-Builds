@@ -1,42 +1,133 @@
-Tier,Weapon,Build,Kill Time
-S,Jackrabbit,Double Barrel,00:10.558
-,DMLR,Autocycler,00:14.443
-,Gunship Cannon,Thumper,00:14.778
-A,Jackrabbit,Pummeler,00:15.111
-,Trident,Lone Cannoneer,00:15.667
-,Gunship Cannon,Lagrange Halo,00:16.806
-,Laser Cannon,Scorched Earth,00:17.595
-,Globbler,Flood,00:17.925
-,Lead Flinger,Big Fat Doobie,00:21.210
-B,Cycler,Infinity Burn,00:23.423
-,Plate Launcher,Fencing Construction,00:26.261
-,Lead Flinger,Self-Storage,00:26.270
-,Accelerator,Inertia Accelerant,00:26.929
-,Shocklance,Auger Subroutine,00:27.982
-,Trident,Shredify,00:28.728
-,Swarm Launcher,Mitosis,00:29.828
-,Gunship Cannon,Hull Piercer,00:31.214
-,Swarm Launcher,Guidance Array,00:35.248
-,Accelerator,Requeening,00:38.408
-,Diffraction Driver,Cryogenic Firing Chamber,00:44.363
-C,Shocklance,Railshot,00:45.582
-,Accelerator,Ruptured Spleen,00:46.191
-,Street Sweeper,Melodramatic Hero,00:47.212
-,Globbler,Solidified Acid,00:51.203
-,Plate Launcher,Vector Interdiction,00:53.016
-,Plate Launcher,Auto-Demolition,00:57.288
-,Diffraction Driver,Pocket Sniper,00:59.300
-,Carver,Rage,01:00.722
-,Photon Disc,Bullet Time,01:01.181
-,Diffraction Driver,Capacity Waiver,01:03.447
-,Trident,Broadside,01:03.455
-D,Jackrabbit,Pesticide,01:04.298
-,DMLR,Concussive Wave,01:05.081
-,Shocklance,Compressor,01:08.931
-,Cycler,Cyclotron,01:36.868
-,Beam Ripper,Straggler's Revenge,02:39.732
-,Beam Ripper,Inverted Spear of Hell,03:14.986
-,Glider,M.I.R.V.,
-F,Last Argument,Soul Reaper,
-,Mycologist,Melee,
-,Mycologist,Sporadic Sprouting,
+Tier,Weapon,Build,Kill Time,
+S,Jackrabbit,Double Barrel,00:10.558,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,DMLR,Autocycler,00:14.443,"Secondary: Swarm,
+Grenade: Photon (Normal Attunement),
+Elemental Cocktail: Shock to Acid"
+,Gunship Cannon,Thumper,00:14.778,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid
+"
+A,Jackrabbit,Pummeler,00:15.111,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Trident,Lone Cannoneer,00:15.667,"Secondary: Globbler,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Gunship Cannon,Lagrange Halo,00:16.806,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid
+"
+,Laser Cannon,Scorched Earth,00:17.595,"Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Fire to Acid"
+,Globbler,Flood,00:17.925,"Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Acid to Fire
+"
+,Lead Flinger,Big Fat Doobie,00:21.210,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+B,Cycler,Infinity Burn,00:23.423,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Plate Launcher,Fencing Construction,00:26.261,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Lead Flinger,Self-Storage,00:26.270,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Accelerator,Inertia Accelerant,00:26.929,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Shocklance,Auger Subroutine,00:27.982,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Trident,Shredify,00:28.728,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Swarm Launcher,Mitosis,00:29.828,"Secondary: Shocklance,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Gunship Cannon,Hull Piercer,00:31.214,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid
+"
+,Swarm Launcher,Guidance Array,00:35.248,"Secondary: Shocklance,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Accelerator,Requeening,00:38.408,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Diffraction Driver,Cryogenic Firing Chamber,00:44.363,"Secondary: Swarm,
+Grenade: Snowball,
+Elemental Cocktail: n/a"
+C,Shocklance,Railshot,00:45.582,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Accelerator,Ruptured Spleen,00:46.191,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Street Sweeper,Melodramatic Hero,00:47.212,"Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Acid to Fire"
+,Globbler,Solidified Acid,00:51.203,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Acid to Shock"
+,Plate Launcher,Vector Interdiction,00:53.016,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Plate Launcher,Auto-Demolition,00:57.288,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Fire"
+,Diffraction Driver,Pocket Sniper,00:59.300,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Carver,Rage,01:00.722,"Secondary: Swarm,
+Grenade: Photon Disc (Normal Attunement),
+Elemental Cocktail: Shock to Acid"
+,Photon Disc,Bullet Time,01:01.181,"Primary: Plate,
+Secondary: Swarm,
+Grenade: Photon (Normal Attunement),
+Elemental Cocktail: Shock to Acid"
+,Diffraction Driver,Capacity Waiver,01:03.447,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Trident,Broadside,01:03.455,"Secondary: Globbler,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+D,Jackrabbit,Pesticide,01:04.298,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,DMLR,Concussive Wave,01:05.081,"Secondary: Swarm,
+Grenade: Voltaic,
+Elemental Cocktail: Shock to Acid"
+,Shocklance,Compressor,01:08.931,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid"
+,Cycler,Cyclotron,01:36.868,"Secondary: Swarm,
+Grenade: Photon Disc (Syzygy),
+Elemental Cocktail: Shock to Acid"
+,Beam Ripper,Straggler's Revenge,02:39.732,"Primary: Shocklance,
+Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Shock to Acid"
+,Beam Ripper,Inverted Spear of Hell,03:14.986,"Primary: Shocklance,
+Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Shock to Acid"
+,Glider,M.I.R.V.,,"Primary: Plate,
+Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: n/a"
+F,Last Argument,Soul Reaper,,"Secondary: Swarm,
+Grenade: Caustic,
+Elemental Cocktail: Shock to Acid"
+,Mycologist,Melee,,"Secondary: Swarm,
+Grenade: Incendiary,
+Elemental Cocktail: Fire to Acid
+"
+,Mycologist,Sporadic Sprouting,,"Secondary: Diffraction Driver,
+Grenade: Caustic,
+Elemental Cocktail: n/a"
