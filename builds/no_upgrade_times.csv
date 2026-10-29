@@ -1,14 +1,14 @@
-Tier,Weapon,Kill Times
-S,DMLR,00:45.294
-A,Cycler,00:48.075
-,Accelerator,00:52.470
-B,Plate,00:57.817
-,Trident,00:59.213
-,Flinger,01:04.177
-,Carver,01:12.609
-C,Diffraction,01:19.309
-,Shocklance,01:20.462
-,Globbler,01:21.925
-D,Jackrabbit,01:24.310
-,Gunship,02:12.898
-F,Swarm,04:18.375
+Tier,Weapon,Kill Times,Comment
+S,DMLR,00:45.294,Certainly the best feeling early game weapon. For any new player the DMLR is likely to be the best choice in terms of feel before they get any upgrades.
+A,Cycler,00:48.075,"Cycler is your first weapon, meant to introduce players to the game. For that reason, it suffers by being the most basic weapon in the game with no real mechanics. It has a pretty decent time with no upgrades though."
+,Accelerator,00:52.470,"The Accelerator thrives in the upgradeless world. It has excellent base damage and fire rate. Sadly it doesnt really improve from here atleast via bullets, its upgrades enhance other aspects."
+B,Plate Launcher,00:57.817,From my experience most new players think the Plate Launcher is a poor weapon from their first experience. Not knowing that it actually has amazing dps even without upgrades.
+,Trident,00:59.213,"As the assault rifle of the game, the Trident is sort of the baseline. Its not special in terms of damage nor is it particularly weak."
+,Lead Flinger,01:04.177,"The base Lead Flinger has a mechanical problem for most players. Its base fire rate is 14, while most people wont achieve that, meaning it is generally best to use a macro or free wheel."
+,Carver,01:12.609,"As per normal, the Carver is a horde clear weapon. So naturally its boss killing potential is lower. It being a melee weapon also lowers its potential in terms of safety."
+C,Diffraction Driver,01:19.309,The Diffraction Driver is sort of an interesting place in balance. It isnt strong but has the most interesting base mechanic to work with. When spinning your shotgun turns into a sniper.
+,Shocklance,01:20.462,"The Shocklance is primarily a horde clearer, but with the most recent update it got some firepower it drastically needed."
+,Globbler,01:21.925,The Globbler has the worst time without upgrades. This weapon is does not feel great this way. Its best to hold off on using it in this form.
+D,Jackrabbit,01:24.310,The issue with Jackrabbit is that its non upgraded power is limited. Since its base mechanic is that its damage is increased when bounced first means that directly firing is a poor choice.
+,Gunship Cannon,02:12.898,"The Gunship Cannon needs to have this poor early experience because its ability to scale upward is quite insane. Since this is a horde shooter, having innate explosive power is important."
+F,Swarm Launcher,04:18.375,"Swarm Launchers time here suffers from lacking a meaningful method of ammo generation since for all the others I am using the Swarm Launcher as the ammo generation. It certainly wouldnt be so far down, but it isnt a top contender."
