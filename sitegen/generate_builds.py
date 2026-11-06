@@ -164,7 +164,9 @@ def build_card_html(
             )
         )
         parts.append(write_field_html("Upgrades", cell(row, "Upgrades")))
-        parts.append(write_field_html("Comments", cell(row, "Comments")))
+        parts.append(
+            write_field_html("Comments", cell(row, "Comments", "Comment"))
+        )
 
     parts.append("  </div>\n")
 
@@ -203,6 +205,7 @@ def times_row_html(page: PageConfig, row: dict) -> str:
         f'    <p><strong>Kill Time:</strong> '
         f'<span class="kill-time">{html.escape(time_raw)}</span></p>\n'
     )
+    parts.append(write_field_html("Comments", cell(row, "Comment", "Comments")))
     parts.append("  </div>\n")
 
     if img_name:
@@ -282,10 +285,9 @@ def page_body_html(page: PageConfig, prepared: list[dict]) -> str:
 
             if page.mode == "times":
                 main.append(times_row_html(page, row))
-            elif page.mode == "full":
-                main.append(build_card_html(page, row, include_details=True))
             else:
-                main.append(build_card_html(page, row, include_details=False))
+                # full + slim both show gear/comments; empty CSV fields are skipped
+                main.append(build_card_html(page, row, include_details=True))
 
     tiers = present_tiers(prepared) if prepared else []
     parts.append('<div class="build-layout">\n')
