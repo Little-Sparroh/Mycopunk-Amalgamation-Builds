@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sparroh&#x27;s Mycopunk Builds</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>Sparroh's Mycopunk Builds</h1>
+<nav class="top-nav" aria-label="Site">
+  <span class="nav-link nav-link-current" aria-current="page">Home</span>
+  <details class="nav-dropdown" data-nav-section="builds">
+    <summary class="nav-link nav-dropdown-trigger">Builds<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Builds pages">
+      <a class="nav-dropdown-link" href="builds/no_restriction_builds.html">Late Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_infusion_builds.html">Mid Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_rotation_builds.html">Early Game Builds</a>
+      <a class="nav-dropdown-link" href="builds/no_upgrade_times.html">No Upgrade Times</a>
+    </div>
+  </details>
+  <details class="nav-dropdown" data-nav-section="guides">
+    <summary class="nav-link nav-dropdown-trigger">Guides<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Guides pages">
+      <a class="nav-dropdown-link" href="guides/building_guide.html">Building Guide</a>
+      <a class="nav-dropdown-link" href="guides/carver_guide.html">Carver Guide</a>
+      <a class="nav-dropdown-link" href="guides/globbler_guide.html">Globbler Guide</a>
+      <a class="nav-dropdown-link" href="guides/bruisers_bears_guide.html">Bruiser&#x27;s Bears Guide</a>
+      <a class="nav-dropdown-link" href="guides/roachards_pumpkins_guide.html">Roachard&#x27;s Pumpkins Guide</a>
+      <a class="nav-dropdown-link" href="guides/terrys_pumpkins_guide.html">Terry&#x27;s Pumpkins Guide</a>
+    </div>
+  </details>
+  <details class="nav-dropdown" data-nav-section="tierlists">
+    <summary class="nav-link nav-dropdown-trigger">Tierlists<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="Tierlists pages">
+      <a class="nav-dropdown-link" href="tierlists/weapon_tierlist.html">Weapon Tierlist</a>
+    </div>
+  </details>
+  <details class="nav-dropdown" data-nav-section="external">
+    <summary class="nav-link nav-dropdown-trigger">External Links<span class="nav-dropdown-caret" aria-hidden="true"></span></summary>
+    <div class="nav-dropdown-panel" role="group" aria-label="External links">
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://coloronx.github.io/Mycopunk_UpgradeSolver/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Grid Solver (external link)">Grid Solver<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://docs.google.com/spreadsheets/d/16D7SskcxR_eVl4gwiiJHAC6Uj51Nqve1ip5ZPJP40NQ/edit?gid=1144611215#gid=1144611215" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Carson&#x27;s Builds (external link)">Carson&#x27;s Builds<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://mycopunk.miraheze.org/wiki/Main_Page" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Wiki (external link)">Wiki<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://modding.mycopunk.wiki/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Modding Wiki (external link)">Modding Wiki<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://thunderstore.io/c/mycopunk/" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Thunderstore (external link)">Thunderstore<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+      <a class="nav-dropdown-link nav-dropdown-link-external" href="https://www.speedrun.com/Mycopunk" target="_blank" rel="noopener noreferrer" title="Opens in a new tab" aria-label="Speedrunning (external link)">Speedrunning<span class="nav-external-mark" aria-hidden="true">↗</span></a>
+    </div>
+  </details>
+</nav>
+
+<main class="hub">
+  <section class="hub-intro" aria-labelledby="hub-intro-heading">
+    <h2 id="hub-intro-heading" class="hub-section-title">About</h2>
+    <p>
+      Personal testing of Mycopunk’s relative balance. Build pages are ranked by
+      kill time on the Amalgamation boss at <strong>Threat 6</strong> — the tier
+      the game is balanced around. This is my own testing, so coverage is not
+      perfectly even across every weapon.
+    </p>
+  </section>
+
+  <section class="hub-method" aria-labelledby="hub-method-heading">
+    <h2 id="hub-method-heading" class="hub-section-title">How to read the data</h2>
+    <ul class="hub-method-list">
+      <li><strong>Target:</strong> Amalgamation on Threat 6.</li>
+      <li><strong>Metric:</strong> kill time from the exact frame the boss spawns (mod-timed).</li>
+      <li><strong>Setup counts:</strong> charge and setup time are included in the kill time, so long wind-ups are not free wins on paper.</li>
+      <li><strong>Tool-assist:</strong> some entries use tool-assisted execution — notably <strong>Livewire</strong>-based builds and <strong>Gunship Cannon</strong> builds. Treat those times as assisted ceilings, not typical unassisted play.</li>
+      <li><strong>Build pages:</strong> loadouts ranked by that kill time; tiers follow the time distribution.</li>
+      <li><strong>Weapon tierlist:</strong> not the same dataset. It is feel-based for the general game, with a bias toward weapons that both horde clear and boss.</li>
+      <li><strong>Bias:</strong> personal playtime — weapons I dislike are probably under-tested.</li>
+    </ul>
+  </section>
+
+  <section class="hub-start" aria-labelledby="hub-start-heading">
+    <h2 id="hub-start-heading" class="hub-section-title">Start here</h2>
+    <p class="hub-start-lead">Suggested path for most players.</p>
+    <ol class="hub-cards">
+      <li>
+        <a class="hub-card" href="guides/building_guide.html">
+          <span class="hub-card-step" aria-hidden="true">1</span>
+          <span class="hub-card-body">
+            <span class="hub-card-title">Building Guide</span>
+            <span class="hub-card-desc">How to think about loadouts before chasing times.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="hub-card" href="builds/no_infusion_builds.html">
+          <span class="hub-card-step" aria-hidden="true">2</span>
+          <span class="hub-card-body">
+            <span class="hub-card-title">Mid Game Builds</span>
+            <span class="hub-card-desc">Solid progression setups — the best default stop for most players.</span>
+          </span>
+        </a>
+      </li>
+      <li>
+        <a class="hub-card" href="tierlists/weapon_tierlist.html">
+          <span class="hub-card-step" aria-hidden="true">3</span>
+          <span class="hub-card-body">
+            <span class="hub-card-title">Weapon Tierlist</span>
+            <span class="hub-card-desc">Broader meta feel (not pure kill-time science).</span>
+          </span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="hub-browse" aria-labelledby="hub-browse-heading">
+    <h2 id="hub-browse-heading" class="hub-section-title">Browse by section</h2>
+
+    <div class="hub-browse-block">
+      <h3 class="hub-browse-label">Builds</h3>
+      <ul class="hub-link-list">
+        <li>
+          <a class="hub-link-row" href="builds/no_restriction_builds.html">
+            <span class="hub-link-title">Late Game Builds</span>
+            <span class="hub-link-desc">Full endgame loadouts when you have everything available.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="builds/no_infusion_builds.html">
+            <span class="hub-link-title">Mid Game Builds</span>
+            <span class="hub-link-desc">Solid mid-progression setups before full endgame options.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="builds/no_rotation_builds.html">
+            <span class="hub-link-title">Early Game Builds</span>
+            <span class="hub-link-desc">Early-game setups with limited options still in mind.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="builds/no_upgrade_times.html">
+            <span class="hub-link-title">No Upgrade Times</span>
+            <span class="hub-link-desc">Baseline weapon kill times with no upgrades on Threat 1 Amalgamation.</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hub-browse-block">
+      <h3 class="hub-browse-label">Guides</h3>
+      <ul class="hub-link-list">
+        <li>
+          <a class="hub-link-row" href="guides/building_guide.html">
+            <span class="hub-link-title">Building Guide</span>
+            <span class="hub-link-desc">Loadout fundamentals — combos, elements, employees, grenades.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="guides/carver_guide.html">
+            <span class="hub-link-title">Carver Guide</span>
+            <span class="hub-link-desc">Unlock path and notes for Carver.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="guides/globbler_guide.html">
+            <span class="hub-link-title">Globbler Guide</span>
+            <span class="hub-link-desc">How to play and build Globbler.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="guides/bruisers_bears_guide.html">
+            <span class="hub-link-title">Bruiser&#x27;s Bears Guide</span>
+            <span class="hub-link-desc">Bruiser&#x27;s Bears unlock and usage notes.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="guides/roachards_pumpkins_guide.html">
+            <span class="hub-link-title">Roachard&#x27;s Pumpkins Guide</span>
+            <span class="hub-link-desc">Roachard&#x27;s Pumpkins unlock and usage notes.</span>
+          </a>
+        </li>
+        <li>
+          <a class="hub-link-row" href="guides/terrys_pumpkins_guide.html">
+            <span class="hub-link-title">Terry&#x27;s Pumpkins Guide</span>
+            <span class="hub-link-desc">Terry&#x27;s Pumpkins unlock and usage notes.</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hub-browse-block">
+      <h3 class="hub-browse-label">Tierlists</h3>
+      <ul class="hub-link-list">
+        <li>
+          <a class="hub-link-row" href="tierlists/weapon_tierlist.html">
+            <span class="hub-link-title">Weapon Tierlist</span>
+            <span class="hub-link-desc">Overall weapon rankings by general-game feel.</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="hub-updated"><time datetime="2026-11-02">Last updated: 2026-11-02</time></p>
+</main>
+
+<script>
+(function () {
+  var nav = document.querySelector(".top-nav");
+  if (!nav) return;
+  var dropdowns = nav.querySelectorAll("details.nav-dropdown");
+  if (!dropdowns.length) return;
+
+  function closeAll(except) {
+    dropdowns.forEach(function (d) {
+      if (d !== except) d.open = false;
+    });
+  }
+
+  dropdowns.forEach(function (d) {
+    d.addEventListener("toggle", function () {
+      if (d.open) closeAll(d);
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!nav.contains(e.target)) closeAll(null);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAll(null);
+  });
+})();
+</script>
+</body>
+</html>

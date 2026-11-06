@@ -1,0 +1,42 @@
+Tier,Weapon,Build,Kill Time,Secondary,Grenade,Elemental Cocktail
+S,Jackrabbit,Double Barrel,00:10.558,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,DMLR,Autocycler,00:14.443,Swarm Launcher,Photon Disc,Shock to Acid
+,Gunship Cannon,Thumper,00:14.778,Swarm Launcher,Incendiary Grenade,Fire to Acid
+A,Jackrabbit,Pummeler,00:15.111,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Trident,Lone Cannoneer,00:15.667,Globbler,Incendiary Grenade,Fire to Acid
+,Gunship Cannon,Lagrange Halo,00:16.806,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Laser Cannon,Scorched Earth,00:17.595,Swarm Launcher,Caustic Grenade,Fire to Acid
+,Globbler,Flood,00:17.925,Swarm Launcher,Caustic Grenade,Acid to Fire
+,Lead Flinger,Big Fat Doobie,00:21.210,Swarm Launcher,Incendiary Grenade,Fire to Acid
+B,Cycler,Infinity Burn,00:23.423,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Plate Launcher,Fencing Construction,00:26.261,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Lead Flinger,Self-Storage,00:26.270,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Accelerator,Inertia Accelerant,00:26.929,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Shocklance,Auger Subroutine,00:27.982,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Trident,Shredify,00:28.728,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Swarm Launcher,Mitosis,00:29.828,Shocklance,Voltaic Grenade,Shock to Acid
+,Gunship Cannon,Hull Piercer,00:31.214,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Swarm Launcher,Guidance Array,00:35.248,Shocklance,Voltaic Grenade,Shock to Acid
+,Accelerator,Requeening,00:38.408,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Diffraction Driver,Cryogenic Firing Chamber,00:44.363,Swarm Launcher,Snowball,n/a
+C,Shocklance,Railshot,00:45.582,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Accelerator,Ruptured Spleen,00:46.191,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Street Sweeper,Melodramatic Hero,00:47.212,Swarm Launcher,Caustic Grenade,Acid to Fire
+,Globbler,Solidified Acid,00:51.203,Swarm Launcher,Voltaic Grenade,Acid to Shock
+,Plate Launcher,Vector Interdiction,00:53.016,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Plate Launcher,Auto-Demolition,00:57.288,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Diffraction Driver,Pocket Sniper,00:59.300,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Carver,Rage,01:00.722,Swarm Launcher,Photon Disc,Shock to Acid
+,Photon Disc,Bullet Time,01:01.181,Swarm Launcher,Photon Disc,Shock to Acid
+,Diffraction Driver,Capacity Waiver,01:03.447,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Trident,Broadside,01:03.455,Globbler,Incendiary Grenade,Fire to Acid
+D,Jackrabbit,Pesticide,01:04.298,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,DMLR,Concussive Wave,01:05.081,Swarm Launcher,Voltaic Grenade,Shock to Acid
+,Shocklance,Compressor,01:08.931,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Cycler,Cyclotron,01:36.868,Swarm Launcher,Photon Disc,Shock to Acid
+,Beam Ripper,Straggler's Revenge,02:39.732,Shocklance,Caustic Grenade,Shock to Acid
+,Beam Ripper,Inverted Spear of Hell,03:14.986,Shocklance,Caustic Grenade,Shock to Acid
+,Glider,M.I.R.V.,,Swarm Launcher,Incendiary Grenade,n/a
+F,Last Argument,Soul Reaper,,Swarm Launcher,Caustic Grenade,Shock to Acid
+,Mycologist,Melee,,Swarm Launcher,Incendiary Grenade,Fire to Acid
+,Mycologist,Sporadic Sprouting,,Diffraction Driver,Caustic Grenade,n/a
