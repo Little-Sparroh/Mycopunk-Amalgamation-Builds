@@ -23,8 +23,39 @@ The site loads them via raw GitHub URLs, for example:
 
 Generators invent the usual filenames (`weapon_build.PNG`, `weapon_render.png`) when no local image folder is present. An optional local `assets/images/` or `depreciated-assets/images/` cache is only used to match real on-disk casing — it is **not** served by GitHub Pages.
 
+Mid and early game builds can also ship a **Column** companion next to the main **Row** shot: `weapon_build_column.PNG`. Build pages show a Row / Column toggle when that file is present.
+
+### Test build images (gear lightbox)
+
+Companion gear shots live in `test_build_images/` (e.g. `swarm_launcher_munition_siphon.PNG`, `incendiary_grenade_internal_combustion.PNG`). On Late/Mid/Early build cards, **Primary**, **Secondary**, **Grenade**, and **Employee** values that match a file (gear name only — optional `_build` suffix ignored) become clickable and open the same screenshot lightbox. No separate page or nav entry.
+
+
+## Upgrades column (build CSVs)
+
+The `Upgrades` cell is a comma-separated list. Each entry:
+
+```text
+O Boundary Incursion (Cyclotron) x2
+```
+
+| Part | Required? | Meaning |
+|------|-----------|---------|
+| `O` / `X` / `E` / `R` / `S` | no | Oddity, Exotic, Epic, Rare, Standard |
+| name | yes | Upgrade display name |
+| `(Infusion)` | no | Pattern infusion in parentheses |
+| `x2` or `×2` | no | Stack count (default 1; ×1 is hidden) |
+
+Examples of valid partial entries:
+
+- `O Boundary Incursion (Cyclotron) x2`
+- `O Boundary Incursion`
+- `Boundary Incursion x2` → listed under **Other**
+- `Boundary Incursion`
+
+Empty cells omit the upgrades block. Build pages render a small rarity table (Oddity → … → Standard, then Other).
 
 ### Videos
+
 
 Prefer YouTube for long clips. In guide markdown:
 

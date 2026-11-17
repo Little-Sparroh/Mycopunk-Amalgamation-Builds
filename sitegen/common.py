@@ -4,9 +4,13 @@ from __future__ import annotations
 
 import csv
 import html
+import json
 import re
+import urllib.error
+import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
+
 
 ROOT = Path(__file__).resolve().parent.parent
 GITHUB_BLOB = (
@@ -341,9 +345,99 @@ def find_image(image_dir: Path, *name_parts: str) -> str | None:
     return _canonical_remote_filename(*name_parts)
 
 
+# folder name -> lowercased filename -> real casing (from image repo tree)
+_remote_image_name_cache: dict[str, dict[str, str] | None] = {}
+
+
+def list_remote_image_names(folder: str) -> dict[str, str] | None:
+    """Map lowercased filename -> real name for one folder in the image repo.
+
+    Uses the GitHub git trees API once per folder per process. Returns None if
+    the listing fails (offline / rate limit) so callers can degrade gracefully.
+    """
+    name = folder.strip("/").replace("\\", "/")
+    if name in _remote_image_name_cache:
+        return _remote_image_name_cache[name]
+
+    api = (
+        f"https://api.github.com/repos/{IMAGE_REPO}/contents/{name}"
+    )
+    try:
+        req = urllib.request.Request(
+            api,
+            headers={"Accept": "application/vnd.github+json", "User-Agent": "mycopunk-builds-sitegen"},
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            payload = json.load(resp)
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError, OSError):
+        _remote_image_name_cache[name] = None
+        return None
+
+    if not isinstance(payload, list):
+        _remote_image_name_cache[name] = None
+        return None
+
+    lower_map: dict[str, str] = {}
+    for entry in payload:
+        if not isinstance(entry, dict):
+            continue
+        if entry.get("type") != "file":
+            continue
+        fname = entry.get("name")
+        if isinstance(fname, str) and fname:
+            lower_map[fname.lower()] = fname
+
+    _remote_image_name_cache[name] = lower_map
+    return lower_map
+
+
+def find_column_image(image_dir: Path, main_filename: str) -> str | None:
+    """Return companion ``{stem}_column{ext}`` for a main build screenshot.
+
+    Row (main) files are ``weapon_build.PNG``; Column companions use the same
+    stem with a ``_column`` suffix.
+
+    Only returns a name when the file is known to exist: local cache first,
+    otherwise the image-repo folder listing. Does **not** invent missing
+    column URLs (avoids a toggle that 404s and self-removes on click).
+    """
+    if not main_filename:
+        return None
+
+    path = Path(main_filename)
+    stem = path.stem
+    stem_lower = stem.lower()
+    if stem_lower.endswith("_column") or stem_lower.endswith("_render"):
+        return None
+
+    col_stem = f"{stem}_column"
+
+    if image_dir.is_dir():
+        lower_map = {
+            p.name.lower(): p.name for p in image_dir.iterdir() if p.is_file()
+        }
+        if lower_map:
+            for try_ext in IMAGE_EXTENSIONS:
+                hit = lower_map.get(f"{col_stem}{try_ext}".lower())
+                if hit:
+                    return hit
+            return None
+
+    # No local cache: confirm against the public image repo listing.
+    remote = list_remote_image_names(image_dir.name)
+    if not remote:
+        return None
+    for try_ext in IMAGE_EXTENSIONS:
+        hit = remote.get(f"{col_stem}{try_ext}".lower())
+        if hit:
+            return hit
+    return None
+
+
 
 def parse_kill_time(value: str | None) -> float | None:
     """Parse MM:SS.mmm or SS.mmm into seconds. None if missing/invalid."""
+
     if value is None:
         return None
     text = value.strip()
